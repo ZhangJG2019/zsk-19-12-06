@@ -1,89 +1,200 @@
 <template>
   <div>
     <p class="detail-tab">
-      <el-button :class="{'tabcur':tabCur=='1','tabdefault':tabCur!='1'}" @click="toShowBox('1')">图示</el-button>
-      <el-button :class="{'tabcur':tabCur=='2','tabdefault':tabCur!='2'}" @click="toShowBox('2')">列表</el-button>
+      <el-button
+        :class="{'tabcur':tabCur=='1','tabdefault':tabCur!='1'}"
+        @click="toShowBox('1')"
+      >图示</el-button>
+      <el-button
+        :class="{'tabcur':tabCur=='2','tabdefault':tabCur!='2'}"
+        @click="toShowBox('2')"
+      >列表</el-button>
     </p>
-    <div class="china-box" v-show="this.tabCur=='1'">
+    <div
+      class="china-box"
+      v-show="this.tabCur=='1'"
+    >
       <div style="margin-top:20px;">
-        <el-tabs v-model="activeName1" type="card">
-          <el-tab-pane label="1000 Genomes" name="first">
+        <el-tabs
+          v-model="activeName1"
+          type="card"
+        >
+          <el-tab-pane
+            label="1000 Genomes"
+            name="first"
+          >
             <div class="detail-box-top">
-              <div id="Genomes" style="width: 900px;height:500px;border:1px solid #eee;"></div>
+              <div
+                id="Genomes"
+                style="width: 900px;height:500px;border:1px solid #eee;"
+              ></div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="African" name="second">
+          <el-tab-pane
+            label="African"
+            name="second"
+          >
             <div class="detail-box-top">
-              <div id="African" style="width: 900px;height:500px;border:1px solid #eee;"></div>
+              <div
+                id="African"
+                style="width: 900px;height:500px;border:1px solid #eee;"
+              ></div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="American" name="third">
+          <el-tab-pane
+            label="American"
+            name="third"
+          >
             <div class="detail-box-top">
-              <div id="American" style="width: 900px;height:500px;border:1px solid #eee;"></div>
+              <div
+                id="American"
+                style="width: 900px;height:500px;border:1px solid #eee;"
+              ></div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="East Asian" name="fourth">
+          <el-tab-pane
+            label="East Asian"
+            name="fourth"
+          >
             <div class="detail-box-top">
-              <div id="EastAsian" style="width: 900px;height:500px;border:1px solid #eee;"></div>
+              <div
+                id="EastAsian"
+                style="width: 900px;height:500px;border:1px solid #eee;"
+              ></div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="European" name="five">
+          <el-tab-pane
+            label="European"
+            name="five"
+          >
             <div class="detail-box-top">
-              <div id="European" style="width: 900px;height:500px;border:1px solid #eee;"></div>
+              <div
+                id="European"
+                style="width: 900px;height:500px;border:1px solid #eee;"
+              ></div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="South Asian" name="six">
+          <el-tab-pane
+            label="South Asian"
+            name="six"
+          >
             <div class="detail-box-top">
-              <div id="SouthAsian" style="width: 900px;height:500px;border:1px solid #eee;"></div>
+              <div
+                id="SouthAsian"
+                style="width: 900px;height:500px;border:1px solid #eee;"
+              ></div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="Chinese" name="seven">
+          <el-tab-pane
+            label="Chinese"
+            name="seven"
+          >
             <div class="detail-box-top">
-              <div id="Chinese" style="width: 900px;height:500px;border:1px solid #eee;"></div>
+              <div
+                id="Chinese"
+                style="width: 900px;height:500px;border:1px solid #eee;"
+              ></div>
             </div>
           </el-tab-pane>
         </el-tabs>
       </div>
     </div>
-    <div class="china-box" style="margin-top:25px;" v-show="this.tabCur=='2'">
+    <div
+      class="china-box"
+      style="margin-top:25px;"
+      v-show="this.tabCur=='2'"
+    >
       <!-- <p>(数据来源：3G生物)</p> -->
       <div style="margin-top:20px;">
-        <el-tabs v-model="activeName2" type="card">
-          <el-tab-pane label="1000 Genomes" name="first">
-            <div class="table">
-              <el-table border style="width: 100%" :data="this.newArr_Genomes">
-                <el-table-column prop="race" label="种族" align="center"></el-table-column>
-                <el-table-column prop="testSmounts" label="样本量" align="center"></el-table-column>
-                <el-table-column label="基因型" align="center" width="100%">
-                  <el-table-column label="AA" align="center">
-                    <el-table-column label="n" align="center">
-                      <template slot-scope="scope">{{scope.row.porKeyValueList[1].testSmounts}}</template>
-                    </el-table-column>
-                    <el-table-column label="%" align="center">
-                      <template slot-scope="scope">{{scope.row.porKeyValueList[1].proportion}}</template>
-                    </el-table-column>
+        <el-tabs
+          v-model="activeName2"
+          type="card"
+        >
+          <!-- <el-tab-pane :label="this.tabs.geneName" name="first"> -->
+          <div class="table">
+            <el-table
+              border
+              style="width: 100%"
+              :data="this.chinaData"
+            >
+              <el-table-column
+                :label="this.tableName"
+                align="center"
+                width="100%"
+              >
+                <el-table-column
+                  prop="area"
+                  label="所属地区"
+                  width="120"
+                  align="center"
+                ></el-table-column>
+                <el-table-column
+                  prop="race"
+                  label="种族"
+                  width="170"
+                  align="center"
+                ></el-table-column>
+                <el-table-column
+                  prop="testSmounts"
+                  label="样本量"
+                  align="center"
+                ></el-table-column>
+                <el-table-column
+                  label="AA"
+                  align="center"
+                >
+                  <el-table-column
+                    label="n"
+                    align="center"
+                  >
+                    <template slot-scope="scope">{{scope.row.porKeyValueList[1].testSmounts}}</template>
                   </el-table-column>
-                  <el-table-column label="GG" align="center">
-                    <el-table-column label="n" align="center">
-                      <template slot-scope="scope">{{scope.row.porKeyValueList[0].testSmounts}}</template>
-                    </el-table-column>
-                    <el-table-column label="%" align="center">
-                      <template slot-scope="scope">{{scope.row.porKeyValueList[0].proportion}}</template>
-                    </el-table-column>
-                  </el-table-column>
-                  <el-table-column label="AG" align="center">
-                    <el-table-column label="n" align="center">
-                      <template slot-scope="scope">{{scope.row.porKeyValueList[2].testSmounts}}</template>
-                    </el-table-column>
-                    <el-table-column label="%" align="center">
-                      <template slot-scope="scope">{{scope.row.porKeyValueList[2].proportion}}</template>
-                    </el-table-column>
+                  <el-table-column
+                    label="%"
+                    align="center"
+                  >
+                    <template slot-scope="scope">{{scope.row.porKeyValueList[1].proportion}}</template>
                   </el-table-column>
                 </el-table-column>
-              </el-table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="African" name="second">
+                <el-table-column
+                  label="GG"
+                  align="center"
+                >
+                  <el-table-column
+                    label="n"
+                    align="center"
+                  >
+                    <template slot-scope="scope">{{scope.row.porKeyValueList[0].testSmounts}}</template>
+                  </el-table-column>
+                  <el-table-column
+                    label="%"
+                    align="center"
+                  >
+                    <template slot-scope="scope">{{scope.row.porKeyValueList[0].proportion}}</template>
+                  </el-table-column>
+                </el-table-column>
+                <el-table-column
+                  label="AG"
+                  align="center"
+                >
+                  <el-table-column
+                    label="n"
+                    align="center"
+                  >
+                    <template slot-scope="scope">{{scope.row.porKeyValueList[2].testSmounts}}</template>
+                  </el-table-column>
+                  <el-table-column
+                    label="%"
+                    align="center"
+                  >
+                    <template slot-scope="scope">{{scope.row.porKeyValueList[2].proportion}}</template>
+                  </el-table-column>
+                </el-table-column>
+              </el-table-column>
+            </el-table>
+          </div>
+          <!-- </el-tab-pane> -->
+          <!-- <el-tab-pane label="African" name="second">
             <div class="table">
               <el-table border style="width: 100%" :data="this.newArr_African">
                 <el-table-column prop="area" label="地区" align="center"></el-table-column>
@@ -292,32 +403,32 @@
                 </el-table-column>
               </el-table>
             </div>
-          </el-tab-pane>
+          </el-tab-pane>-->
         </el-tabs>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Vue from "vue";
+import Vue from 'vue'
 //引入主题
-import echartFun2 from "./map-option2";
-import { setStore, getStore } from "@/utils/storage.js";
-import { getForeignDataInfo } from "@/api/labels_api.js";
+import echartFun2 from './map-option2'
+import { setStore, getStore } from '@/utils/storage.js'
+import { getForeignDataInfo } from '@/api/labels_api.js'
 export default {
-  name: "dataStatisticsChina",
+  name: 'dataStatisticsChina',
   // 生命周期函数
   data() {
     return {
       // msg: "Welcome to Your Vue.js App",
       chart: null,
-      tabCur: "1",
+      tabCur: '1',
       ageGroupData: [],
       sampleTypeData: [],
       yearData: [],
-      chinaData: {},
-      activeName1: "first",
-      activeName2: "first",
+      chinaData: [],
+      activeName1: 'first',
+      activeName2: 'first',
       queryObj: {},
       newArr_Genomes: [],
       newArr_Genomes2: [],
@@ -332,166 +443,169 @@ export default {
       newArr_European: [],
       newArr_European2: [],
       newArr_SouthAsian: [],
-      newArr_SouthAsian2: []
-    };
+      newArr_SouthAsian2: [],
+      tableName: ''
+    }
   },
   created() {
     this.queryObj =
-      Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
-    this.getDataInfo();
+      Object.keys(this.$route.query).length > 0 ? this.$route.query : {}
+    this.tabs = JSON.parse(getStore('data_statistics_hook')) || []
+    this.tableName = this.tabs.geneName + '--' + this.tabs.genePorName
+    // this.tableName = this.tabs.geneName;
+    this.getDataInfo()
   },
   methods: {
     getDataInfo() {
       getForeignDataInfo({
         id: this.queryObj.id
       }).then(res => {
-        this.chinaData = res;
-        console.log(this.chinaData);
+        this.chinaData = res
         Object.keys(res).forEach(r => {
           // r是每个数组名称
-          this.filterTableData(res[r], r); //将数据划分为7大类
-        });
-      });
+          this.filterTableData(res[r], r) //将数据划分为7大类
+        })
+      })
     },
     filterTableData(data, str) {
-      if (typeof data == "string") return;
-      let copyArr = JSON.parse(JSON.stringify(data)); //展示33条数居中得一条
-      if (copyArr.fatherRace === null && copyArr.race === "1000 Genomes") {
-        this.newArr_Genomes.push(data);
-        let pkvl = this.newArr_Genomes[0].porKeyValueList;
+      if (typeof data == 'string') return
+      let copyArr = JSON.parse(JSON.stringify(data)) //展示33条数居中得一条
+      if (copyArr.fatherRace === null && copyArr.race === '1000 Genomes') {
+        this.newArr_Genomes.push(data)
+        let pkvl = this.newArr_Genomes[0].porKeyValueList
+        debugger
         this.newArr_Genomes2 = pkvl.map(r => {
           return {
             name: r.porName,
             value: r.testSmounts ? r.testSmounts : 0
-          };
-        });
+          }
+        })
       }
-      if (copyArr.fatherRace === null && copyArr.race === "Chinese") {
-        this.newArr_Chinese.push(data);
-        let pkvl = this.newArr_Chinese[0].porKeyValueList;
+      if (copyArr.fatherRace === null && copyArr.race === 'Chinese') {
+        this.newArr_Chinese.push(data)
+        let pkvl = this.newArr_Chinese[0].porKeyValueList
         this.newArr_Chinese2 = pkvl.map(r => {
           return {
             name: r.porName,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
-          };
-        });
-        this.drawSex("Chinese");
+          }
+        })
+        this.drawSex('Chinese')
       }
-      if (copyArr.fatherRace === null && copyArr.race === "American") {
-        this.newArr_American.push(data);
-        debugger;
-        let pkvl = this.newArr_American[0].porKeyValueList;
+      if (copyArr.fatherRace === null && copyArr.race === 'American') {
+        this.newArr_American.push(data)
+        let pkvl = this.newArr_American[0].porKeyValueList
         this.newArr_American2 = pkvl.map(r => {
           return {
             name: r.porName,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
-          };
-        });
-        this.drawSex("American");
+          }
+        })
+        this.drawSex('American')
       }
-      if (copyArr.fatherRace === null && copyArr.race === "African") {
-        this.newArr_African.push(data);
-        let pkvl = this.newArr_African[0].porKeyValueList;
+      if (copyArr.fatherRace === null && copyArr.race === 'African') {
+        this.newArr_African.push(data)
+        let pkvl = this.newArr_African[0].porKeyValueList
         this.newArr_African2 = pkvl.map(r => {
           return {
             name: r.porName,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
-          };
-        });
-        this.drawSex("African");
+          }
+        })
+        this.drawSex('African')
       }
-      if (copyArr.fatherRace === null && copyArr.race === "East Asian") {
-        this.newArr_EastAsian.push(data);
-        let pkvl = this.newArr_EastAsian[0].porKeyValueList;
+      if (copyArr.fatherRace === null && copyArr.race === 'East Asian') {
+        this.newArr_EastAsian.push(data)
+        let pkvl = this.newArr_EastAsian[0].porKeyValueList
         this.newArr_EastAsian2 = pkvl.map(r => {
           return {
             name: r.porName,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
-          };
-        });
-        this.drawSex("EastAsian");
+          }
+        })
+        this.drawSex('EastAsian')
       }
-      if (copyArr.fatherRace === null && copyArr.race === "European") {
-        this.newArr_European.push(data);
-        let pkvl = this.newArr_European[0].porKeyValueList;
+      if (copyArr.fatherRace === null && copyArr.race === 'European') {
+        this.newArr_European.push(data)
+        let pkvl = this.newArr_European[0].porKeyValueList
         this.newArr_European2 = pkvl.map(r => {
           return {
             name: r.porName,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
-          };
-        });
-        this.drawSex("European");
+          }
+        })
+        this.drawSex('European')
       }
-      if (copyArr.fatherRace === null && copyArr.race === "South Asian") {
-        this.newArr_SouthAsian.push(data);
-        let pkvl = this.newArr_SouthAsian[0].porKeyValueList;
+      if (copyArr.fatherRace === null && copyArr.race === 'South Asian') {
+        this.newArr_SouthAsian.push(data)
+        let pkvl = this.newArr_SouthAsian[0].porKeyValueList
         this.newArr_SouthAsian2 = pkvl.map(r => {
           return {
             name: r.porName,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
-          };
-        });
-        this.drawSex("SouthAsian");
+          }
+        })
+        this.drawSex('SouthAsian')
       }
     },
     drawSex(str) {
-      if (str == "Chinese") {
-        echartFun2.pie("Chinese", { data: this.newArr_Chinese2 });
+      if (str == 'Chinese') {
+        echartFun2.pie('Chinese', { data: this.newArr_Chinese2 })
       }
-      if (str == "American") {
-        echartFun2.pie("American", { data: this.newArr_American2 });
+      if (str == 'American') {
+        echartFun2.pie('American', { data: this.newArr_American2 })
       }
-      if (str == "African") {
-        echartFun2.pie("African", { data: this.newArr_African2 });
+      if (str == 'African') {
+        echartFun2.pie('African', { data: this.newArr_African2 })
       }
-      if (str == "EastAsian") {
-        echartFun2.pie("EastAsian", { data: this.newArr_EastAsian2 });
+      if (str == 'EastAsian') {
+        echartFun2.pie('EastAsian', { data: this.newArr_EastAsian2 })
       }
-      if (str == "European") {
-        echartFun2.pie("European", { data: this.newArr_European2 });
+      if (str == 'European') {
+        echartFun2.pie('European', { data: this.newArr_European2 })
       }
-      if (str == "SouthAsian") {
-        echartFun2.pie("SouthAsian", { data: this.newArr_SouthAsian2 });
+      if (str == 'SouthAsian') {
+        echartFun2.pie('SouthAsian', { data: this.newArr_SouthAsian2 })
       }
     },
     toShowBox(str) {
-      if (this.tabCur == str) return;
-      this.tabCur = str;
+      if (this.tabCur == str) return
+      this.tabCur = str
     },
     drawChinaMap() {
-      let option = echartFun2.pie2(this.newArr_Genomes2);
+      let option = echartFun2.pie2(this.newArr_Genomes2)
       this.chart = this.$echarts.init(
-        document.getElementById("Genomes"),
-        "macarons"
-      );
-      this.chart.setOption(option);
+        document.getElementById('Genomes'),
+        'macarons'
+      )
+      this.chart.setOption(option)
     }
   },
   updated() {
     if (!this.chart) {
-      this.drawChinaMap();
+      this.drawChinaMap()
     }
   },
   beforeDestroy() {
     if (!this.chart) {
-      return;
+      return
     }
-    this.chart.dispose();
-    this.chart = null;
+    this.chart.dispose()
+    this.chart = null
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
