@@ -3,6 +3,12 @@
   margin: 0 auto;
 }
 
+.el-card__body {
+  min-height: calc(100vh - 248px);
+  // min-height: calc(100vh - 300px);
+  background: #fff;
+}
+
 .fl {
   float: left;
 }
@@ -50,6 +56,7 @@
   background: url(/static/images/account-icon@2x.32d87deb02b3d1c3cc5bcff0c26314ac.png) -50px -60px no-repeat;
   background-size: 240px 107px;
   text-indent: -9999em;
+
   &:hover {
     background-position: -75px -60px;
   }
@@ -68,5 +75,3 @@
   border-color: rgba(0, 0, 0, .14);
   box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .1);
 }
-
-

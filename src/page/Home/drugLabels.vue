@@ -10,16 +10,17 @@
           <i class="druglabels-icon"></i>
           <span class="text">药物标签(Drug Labels)</span>
         </h4>
-        <p
-          class="text"
-        >药物标签注释是由美国食品和药物管理局（FDA），欧洲药品管理局（EMA），瑞士医疗产品管理局（Swiss），日本医药品与医疗器械局（PMDA）和加拿大卫生部（HCSC），CFDA批准的有关药物基因组学信息的标签。</p>
+        <p class="text">药物标签注释是由美国食品和药物管理局（FDA），欧洲药品管理局（EMA），瑞士医疗产品管理局（Swiss），日本医药品与医疗器械局（PMDA）和加拿大卫生部（HCSC），CFDA批准的有关药物基因组学信息的标签。</p>
         <p class="text">药物标签注释提供了药物，基因注释的摘要以及可下载的药物标签PDF文件，并使用“ PGx Level”标签解释每个标签中暗含的循证等级。</p>
         <p class="text">我们欢迎FDA，EMA，Swiss，PMDA，HCSC，CFDA或世界其他医学机构认可基于PGx的药物标签信息-请与我们联系。</p>
       </div>
       <div slot="filter-box">
         <p class="fr">共{{listAllNum}}条药物标签记录，当前显示{{(pageNum*pageSize-9)+"-"+pageNum*pageSize}}条</p>
         <div class="fl">
-          <el-select v-model="filterSValue" placeholder="请选择">
+          <el-select
+            v-model="filterSValue"
+            placeholder="请选择"
+          >
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -27,13 +28,26 @@
               :value="item.value"
             ></el-option>
           </el-select>
-          <el-button class="filter-button" @click="getPageData()">筛选</el-button>
+          <el-button
+            class="filter-button"
+            @click="getPageData()"
+          >筛选</el-button>
         </div>
       </div>
       <div class="content-box">
-        <p v-if="!tableData.length&&!loading" style="text-align:center; padding-top:20px;">暂无数据</p>
-        <ul v-loading="loading" style="min-height:150px;">
-          <li class="content-list" v-for="(item,index) of tableData" :key="'labels+'+index">
+        <p
+          v-if="!tableData.length&&!loading"
+          style="text-align:center; padding-top:20px;"
+        >暂无数据</p>
+        <ul
+          v-loading="loading"
+          style="min-height:150px;"
+        >
+          <li
+            class="content-list"
+            v-for="(item,index) of tableData"
+            :key="'labels+'+index"
+          >
             <span class="list-icon"></span>
             <p style="color:#999;">药物标签</p>
             <p
@@ -44,47 +58,72 @@
               <em style="color:#888; padding-left:10px;">({{item.englishName}})</em>
             </p>
             <div class="table druglabels">
-              <el-table :data="arrChange(item)" border style="width: 100%">
-                <el-table-column label="FDA" align="center">
+              <el-table
+                :data="arrChange(item)"
+                border
+                style="width: 100%"
+              >
+                <el-table-column
+                  label="FDA"
+                  align="center"
+                >
                   <template slot-scope="scope">
                     <ol class="tips-list">
                       <li
                         v-for="list of filterData(scope.row.drugLabelList,'FDA')"
                         :key="list.liteId"
-                        @click="toSearchContent('',item.name,'project','2',true)"
+                        @click="toSearchContent(item.id,item.name,'project','2',true)"
                       >
-                        <el-tag :color="returnColor(list.pgxLevel)" class="el-tag">{{list.pgxLevel}}</el-tag>
+                        <el-tag
+                          :color="returnColor(list.pgxLevel)"
+                          class="el-tag"
+                        >{{list.pgxLevel}}</el-tag>
                       </li>
                     </ol>
                   </template>
                 </el-table-column>
-                <el-table-column label="EMA" align="center">
+                <el-table-column
+                  label="EMA"
+                  align="center"
+                >
                   <template slot-scope="scope">
                     <ol class="tips-list">
                       <li
                         v-for="list of filterData(scope.row.drugLabelList,'EMA')"
                         :key="list.liteId"
-                        @click="toSearchContent('',item.name,'project','2',true)"
+                        @click="toSearchContent(item.id,item.name,'project','2',true)"
                       >
-                        <el-tag :color="returnColor(list.pgxLevel)" class="el-tag">{{list.pgxLevel}}</el-tag>
+                        <el-tag
+                          :color="returnColor(list.pgxLevel)"
+                          class="el-tag"
+                        >{{list.pgxLevel}}</el-tag>
                       </li>
                     </ol>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="HCSC">
+                <el-table-column
+                  align="center"
+                  label="HCSC"
+                >
                   <template slot-scope="scope">
                     <ol class="tips-list">
                       <li
                         v-for="list of filterData(scope.row.drugLabelList,'HCSC')"
                         :key="list.liteId"
-                        @click="toSearchContent('',item.name,'project','2',true)"
+                        @click="toSearchContent(item.id,item.name,'project','2',true)"
                       >
-                        <el-tag :color="returnColor(list.pgxLevel)" class="el-tag">{{list.pgxLevel}}</el-tag>
+                        <el-tag
+                          :color="returnColor(list.pgxLevel)"
+                          class="el-tag"
+                        >{{list.pgxLevel}}</el-tag>
                       </li>
                     </ol>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="PMDA">
+                <el-table-column
+                  align="center"
+                  label="PMDA"
+                >
                   <template slot-scope="scope">
                     <ol class="tips-list">
                       <li
@@ -92,12 +131,18 @@
                         :key="list.liteId"
                         @click="toSearchContent(item.id,item.name,'project','2',true)"
                       >
-                        <el-tag :color="returnColor(list.pgxLevel)" class="el-tag">{{list.pgxLevel}}</el-tag>
+                        <el-tag
+                          :color="returnColor(list.pgxLevel)"
+                          class="el-tag"
+                        >{{list.pgxLevel}}</el-tag>
                       </li>
                     </ol>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="CFDA">
+                <el-table-column
+                  align="center"
+                  label="CFDA"
+                >
                   <template slot-scope="scope">
                     <ol class="tips-list">
                       <li
@@ -105,7 +150,10 @@
                         :key="list.liteId"
                         @click="toSearchContent(item.id,item.name,'project','2',true)"
                       >
-                        <el-tag :color="returnColor(list.pgxLevel)" class="el-tag">{{list.pgxLevel}}</el-tag>
+                        <el-tag
+                          :color="returnColor(list.pgxLevel)"
+                          class="el-tag"
+                        >{{list.pgxLevel}}</el-tag>
                       </li>
                     </ol>
                   </template>
@@ -135,14 +183,14 @@
   </div>
 </template>
 <script>
-import YHeader from "/common/header";
-import YFooter from "/common/footer";
-import LabelPage from "@/components/label-page.vue";
-import { getDrugLabelsSortLable } from "@/api/labels_api.js";
-import styleConfig, { splitLabel } from "@/utils/style_config.js";
+import YHeader from '/common/header'
+import YFooter from '/common/footer'
+import LabelPage from '@/components/label-page.vue'
+import { getDrugLabelsSortLable } from '@/api/labels_api.js'
+import styleConfig, { splitLabel } from '@/utils/style_config.js'
 
 export default {
-  name: "druglabels",
+  name: 'druglabels',
   // 生命周期函数
 
   data() {
@@ -152,44 +200,44 @@ export default {
       searchField: null,
       searchString: null,
       searchOper: null,
-      filterValue: "",
-      filterSValue: "",
+      filterValue: '',
+      filterSValue: '',
       pageSize: 10,
       pageNum: 1,
       listAllNum: 0,
       tableData: [],
       loading: false
-    };
+    }
   },
   created() {
-    this.getListDatas();
+    this.getListDatas()
   },
   mounted() {},
   methods: {
     filterData(arr, str) {
-      return arr.filter(res => res.source == str);
+      return arr.filter(res => res.source == str)
     },
     arrChange(obj) {
-      if (Object.prototype.toString.call(obj) === "[object Array]") return obj;
-      return [obj];
+      if (Object.prototype.toString.call(obj) === '[object Array]') return obj
+      return [obj]
     },
     pageChange(v) {
-      if (v == this.pageNum) return;
-      this.pageNum = v;
-      this.getListDatas();
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      if (v == this.pageNum) return
+      this.pageNum = v
+      this.getListDatas()
+      document.body.scrollTop = document.documentElement.scrollTop = 0
     },
     getPageData() {
-      this.pageNum = 1;
-      this.search = true;
+      this.pageNum = 1
+      this.search = true
       this.searchField = splitLabel(this.filterSValue)
         ? splitLabel(this.filterSValue)[0]
-        : null;
-      this.searchOper = "link";
+        : null
+      this.searchOper = 'link'
       this.searchString = splitLabel(this.filterSValue)
         ? splitLabel(this.filterSValue)[1]
-        : null;
-      this.getListDatas();
+        : null
+      this.getListDatas()
     },
     getListDatas() {
       var params = {
@@ -199,55 +247,55 @@ export default {
         searchOper: this.searchOper,
         rows: this.pageSize,
         page: this.pageNum
-      };
-      this.tableData = [];
-      this.loading = true;
+      }
+      this.tableData = []
+      this.loading = true
       getDrugLabelsSortLable(params)
         .then(res => {
-          this.loading = false;
-          console.log(res.list);
-          this.tableData = res.list;
+          this.loading = false
+          console.log(res.list)
+          this.tableData = res.list
           // this.tableData = res.list || []
-          this.listAllNum = res.total;
+          this.listAllNum = res.total
         })
         .catch(err => {
-          this.loading = false;
-        });
+          this.loading = false
+        })
     },
     returnColor(str) {
-      let colorV = "";
+      let colorV = ''
       switch (str) {
-        case "Testing required":
-          colorV = "#c36";
-          break;
-        case "Testing recommended":
-          colorV = "#f96";
-          break;
-        case "Informative PGx":
-          colorV = "#368ebe";
-          break;
-        case "Actionable PGx":
-          colorV = "#9ac9a3";
-          break;
+        case 'Testing required':
+          colorV = '#c36'
+          break
+        case 'Testing recommended':
+          colorV = '#f96'
+          break
+        case 'Informative PGx':
+          colorV = '#368ebe'
+          break
+        case 'Actionable PGx':
+          colorV = '#9ac9a3'
+          break
         default:
-          colorV = "#ccc";
+          colorV = '#ccc'
       }
-      return colorV;
+      return colorV
     },
     toSearchContent(geneId, name, type, str, num) {
-      console.log(num);
-      if (!num) return;
+      console.log(num)
+      if (!num) return
       let routeData = this.$router.resolve({
-        path: "/searchContent",
+        path: '/searchContent',
         query: {
           key: name,
           id: geneId,
           type: type,
           tabs: str
         }
-      });
+      })
 
-      window.open(routeData.href, "_blank");
+      window.open(routeData.href, '_blank')
     }
   },
   components: {
@@ -255,7 +303,7 @@ export default {
     YHeader,
     YFooter
   }
-};
+}
 </script>
 <style  lang="scss" >
 .table {
@@ -307,8 +355,8 @@ export default {
         text-align: center;
         padding-top: 14px;
         &::after {
-          content: "";
-          background: url("../../public/images/druglabels-icon2.png") no-repeat;
+          content: '';
+          background: url('../../public/images/druglabels-icon2.png') no-repeat;
           background-size: contain;
           width: 30px;
           height: 30px;

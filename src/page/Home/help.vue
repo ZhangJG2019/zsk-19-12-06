@@ -6,30 +6,28 @@
     </y-header>
     <el-card
       class="box-card"
-      style="width:76.5rem; margin:0 auto;height:400px;"
+      style="width:76.5rem; margin:0 auto;"
     >
       <div class="tablecontent">
         <div class="content_title">
           <el-row>
-            <el-col :span="24" style="margin-bottom:20px;">
+            <el-col
+              :span="24"
+              style="margin-bottom:20px;"
+            >
               <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ path: '/' }" style="font-size:15px;"
-                  >首页</el-breadcrumb-item
-                >
-                <el-breadcrumb-item style="font-size:15px;"
-                  >帮助</el-breadcrumb-item
-                >
+                <el-breadcrumb-item
+                  :to="{ path: '/' }"
+                  style="font-size:15px;"
+                >首页</el-breadcrumb-item>
+                <el-breadcrumb-item style="font-size:15px;">帮助</el-breadcrumb-item>
               </el-breadcrumb>
             </el-col>
-            <el-col :span="24"
-              ><p
-                style="font-size: 1rem;font-family:microsoft yahei;margin-bottom:1.25rem;font-weight:100;"
-              >
-                暂无数据
-              </p>
+            <el-col :span="24">
+              <p style="font-size: 1rem;font-family:microsoft yahei;margin-bottom:1.25rem;font-weight:100;">暂无数据</p>
             </el-col>
           </el-row>
-          <el-row style="margin-top:30px;"> </el-row>
+          <el-row style="margin-top:30px;"></el-row>
         </div>
       </div>
     </el-card>
@@ -146,8 +144,8 @@ export default {
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
 .gene_list li:hover {
-  // background-color: #f9f9fa;
-  background-color: red;
+  background-color: #f9f9fa;
+  // background-color: red;
 }
 .gene_list {
   width: 50rem;

@@ -1,12 +1,12 @@
 <template>
   <div class="footer">
     <div class="container">
-      <div class="footer">
+      <div>
         <ul class="footUl">
           <li>
             <img
               src="../public/logo-bottom.png"
-              alt=""
+              alt
             />
           </li>
           <li>
@@ -14,44 +14,65 @@
               <a
                 target="_blank"
                 href="http://www.3gbio.com.cn/html/about/intro/"
-              ><strong>关于公司</strong></a>
-              <a href="####"><strong>|</strong></a>
+              >
+                <strong>关于公司</strong>
+              </a>
+              <a href="####">
+                <strong>|</strong>
+              </a>
               <a
                 target="_blank"
                 href="http://www.3gbio.com.cn/html/privacy/"
-              ><strong>隐私条款</strong></a>
-              <a href="####"><strong>|</strong></a>
+              >
+                <strong>隐私条款</strong>
+              </a>
+              <a href="####">
+                <strong>|</strong>
+              </a>
               <a
                 target="_blank"
                 href="http://www.3gbio.com.cn/html/Legal-Notices/"
-              ><strong>法律声明</strong></a>
-              <a href="####"><strong>|</strong></a>
+              >
+                <strong>法律声明</strong>
+              </a>
+              <a href="####">
+                <strong>|</strong>
+              </a>
               <a
                 target="_blank"
                 href="http://www.3gbio.com.cn/html/mail/"
-              ><strong>企业邮箱</strong></a>
-              <a href="####"><strong>|</strong></a>
+              >
+                <strong>企业邮箱</strong>
+              </a>
+              <a href="####">
+                <strong>|</strong>
+              </a>
               <a
                 target="_blank"
                 href="https://www.cnzz.com/stat/website.php?web_id=4698979"
-              ><strong>站长统计</strong></a>
+              >
+                <strong>站长统计</strong>
+              </a>
             </p>
             <p class="copyright">
               <a
                 target="_blank"
                 href="http://www.miibeian.gov.cn/"
                 style="color:#8e8e8e;"
-              >湘ICP备18007563号-1</a><strong style="color:#8e8e8e;">长沙三济生物科技有限公司 copyright 2012 © 版权所有</strong>
+              >湘ICP备18007563号-1</a>
+              <strong style="color:#8e8e8e;">长沙三济生物科技有限公司 copyright 2012 © 版权所有</strong>
             </p>
           </li>
           <li>
             <img
               src="../public/images/phone.png"
               style="width:50px;height:50px;float:left;"
-              alt=""
+              alt
             />
             <p>
-              <span style="color:#979A99;">免费服务热线</span> <br /><span style="color:#000;font-size:25px;">400-669-0369</span>
+              <span style="color:#979A99;">免费服务热线</span>
+              <br />
+              <span style="color:#000;font-size:25px;">400-669-0369</span>
             </p>
           </li>
         </ul>
@@ -102,8 +123,10 @@ export default {
   padding: 0 42px 0 15px;
 }
 .footer {
-  margin-top: 10px;
-  padding: 25px 0px;
+  // margin-top: 10px;
+  // margin-top: 10px;
+  // padding: 25px 0px;
+  padding: 60px 0px;
   background: #ebeeee;
   display: flex;
   flex-direction: column;

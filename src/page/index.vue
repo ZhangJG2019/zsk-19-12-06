@@ -1,10 +1,13 @@
 <template>
-  <div>
+  <div ref="homePage">
     <y-header></y-header>
     <router-view class="main"></router-view>
     <y-footer></y-footer>
     <!--抛物图片-->
-    <transition @after-enter="afterEnter" @before-enter="beforeEnter">
+    <transition
+      @after-enter="afterEnter"
+      @before-enter="beforeEnter"
+    >
       <!--整张图片-->
       <div
         class="move_img"
@@ -14,7 +17,9 @@
           top: cartPositionT - 10 + 'px'
         }"
       >
-        <div><img :src="moveImgUrl" /></div>
+        <div>
+          <img :src="moveImgUrl" />
+        </div>
       </div>
     </transition>
   </div>
@@ -25,7 +30,23 @@ import YFooter from '/common/footer'
 import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      clientHeight: ''
+    }
+  },
+  mounted() {
+    // 获取浏览器可视区域高度
+    this.clientHeight = `${document.documentElement.clientHeight}` // document.body.clientWidth;
+    // console.log(self.clientHeight);
+    window.onresize = function temp() {
+      this.clientHeight = `${document.documentElement.clientHeight}`
+    }
+  },
+  watch: {
+    // 如果 `clientHeight` 发生改变，这个函数就会运行
+    clientHeight: function() {
+      this.changeFixed(this.clientHeight)
+    }
   },
   computed: {
     ...mapState([
@@ -38,6 +59,12 @@ export default {
     ])
   },
   methods: {
+    // 动态修改样式
+    changeFixed(clientHeight) {
+      // 动态修改样式
+      console.log(clientHeight)
+      this.$refs.homePage.style.height = clientHeight + 'px'
+    },
     ...mapMutations(['ADD_ANIMATION']),
     // 监听图片进入购物车
     listenInCart() {
@@ -80,10 +107,8 @@ export default {
 @import '../assets/style/mixin';
 
 .main {
-  min-height: calc(100vh - 754px);
-  // background: #ededed;
+  min-height: calc(100vh - 230px);
   background: #fff;
-  overflow: hidden;
   width: 100%;
 }
 
