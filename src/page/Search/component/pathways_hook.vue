@@ -62,7 +62,7 @@ export default {
               drugId: this.queryData.id || "",
               name: this.queryData.key || ""
             };
-      debugger;
+
       let queryData =
         this.queryData.type === "gene"
           ? getGenePathwaysFormByGene
@@ -70,8 +70,8 @@ export default {
           ? getGenePathwaysFormByProject
           : getGenePathwaysFormByDrug;
       queryData(param).then(res => {
-        console.log(res);
-        debugger;
+        // console.log(res);
+
         this.dataList = res;
       });
     },
@@ -87,7 +87,7 @@ export default {
       }
 
       setStore("path_ways", obj.pathways);
-      debugger;
+
       window.open(routeData.href, "_blank");
     }
   }

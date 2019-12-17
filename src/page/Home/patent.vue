@@ -4,7 +4,7 @@
     <y-header>
       <div slot="nav"></div>
     </y-header>
-    <label-page>
+    <label-page style=" min-height: calc(100vh - 230px);">
       <div slot="banner-text">
         <h4 class="box-title">
           <i class="authority-icon"></i>
@@ -151,7 +151,7 @@ export default {
         });
     },
     toSearchContent(geneId, name, type, str, num) {
-      console.log(num);
+      // console.log(num);
       if (!num) return;
       let routeData = this.$router.resolve({
         path: "/searchContent",
@@ -162,11 +162,9 @@ export default {
           tabs: str
         }
       });
-      debugger;
       window.open(routeData.href, "_blank");
     },
     toDetailPage(obj) {
-      debugger;
       if (obj.type === 1) {
         let routeData = this.$router.resolve({
           path: "/p-c-detail",

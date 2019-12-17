@@ -123,7 +123,6 @@ export default {
   },
   methods: {
     tabsliClick(obj, index) {
-      debugger;
       if (this.tabsCur == obj.id) return;
       this.tabsCur = obj.literId;
       this.$nextTick(function() {
@@ -137,7 +136,7 @@ export default {
           ? getLitePatentDomesticVODetailInfo
           : getLitePatentForeignVODetailInfo;
       queryDetailData({ literId: this.tabsCur }).then(res => {
-        // debugger;
+        //
         this.dataObj = res;
       });
     },

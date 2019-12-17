@@ -7,7 +7,7 @@ axios.defaults.headers.common['Authentication-Token'] = window.localStorage.toke
 axios.defaults.withCredentials = true
 export default {
   fetchGet(url, params = {}) {
-    console.log(params)
+    // console.log(params)
     return new Promise((resolve, reject) => {
       axios.get(url, params).then(res => {
         resolve(res.data)

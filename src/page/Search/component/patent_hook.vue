@@ -140,8 +140,7 @@ export default {
           : getPatentInfoByDrugId;
       queryData(param)
         .then(res => {
-          debugger;
-          console.log(res.data);
+          // console.log(res.data);
           this.loading = false;
           this.china_patent_hook = res.domestic;
           this.foreign_patent_hook = res.foreign;
@@ -151,12 +150,11 @@ export default {
         });
     },
     toDetailPage(obj) {
-      console.log(obj);
-      // debugger;
+      // console.log(obj);
       if (!obj || !obj["literId"]) return;
-      console.log(1212);
+      // console.log(1212);
       let id = obj["literId"];
-      debugger;
+
       if (this.activeName === "first") {
         var routeData = this.$router.resolve({
           path: "/p-c-detail",
@@ -191,7 +189,6 @@ export default {
             };
             pageData.push(literatures);
           }
-          // debugger
         });
       } else {
         this.foreign_patent_hook.forEach(res => {

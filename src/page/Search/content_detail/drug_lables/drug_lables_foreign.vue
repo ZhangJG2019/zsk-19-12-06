@@ -86,17 +86,17 @@ export default {
       Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
     this.tabsCur = this.queryObj.literId;
     this.tabs = JSON.parse(getStore("drug_labels")) || [];
-    console.log(this.tabs);
+    // console.log(this.tabs);
   },
   mounted() {
     this.queryData();
   },
   methods: {
     tabsliClick(obj, index) {
-      console.log(1111);
-      console.log(obj);
-      console.log(22222);
-      console.log(index);
+      // console.log(1111);
+      // console.log(obj);
+      // console.log(22222);
+      // console.log(index);
       if (this.tabsCur == obj.id) return;
       this.tabsCur = obj.literId;
       this.liteName = obj.liteName;
@@ -111,8 +111,8 @@ export default {
         type == "1" ? getLiteCfdaVODetailInfo : getLiteFdaVODetailInfo;
 
       queryDetailData({ literId: this.tabsCur }).then(res => {
-        console.log(1111111111);
-        console.log(res);
+        // console.log(1111111111);
+        // console.log(res);
         this.dataObj = res;
       });
     },

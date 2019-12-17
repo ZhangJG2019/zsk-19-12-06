@@ -134,20 +134,19 @@ export default {
           : getDrugLabelsByDrug;
       queryData(param)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.loading = false;
           this.china_CFDA_hook = res.chDrugLabelDetailsList;
           this.foreign_drug_hook = res.enDrugLabelDetailsList;
-          debugger;
         })
         .catch(err => {
           this.loading = false;
         });
     },
     toDetailPage(obj) {
-      console.log(1212);
-      console.log(obj);
-      debugger;
+      // console.log(1212);
+      // console.log(obj);
+
       if (!obj || !obj.literId) return;
       let id = obj.literId;
       let routeData;
@@ -168,7 +167,7 @@ export default {
           }
         });
       }
-      debugger;
+
       this.setPageData();
       window.open(routeData.href, "_blank");
     },
@@ -176,7 +175,6 @@ export default {
       let pageData = [];
       if (this.activeName == "first") {
         this.china_CFDA_hook.forEach(res => {
-          debugger;
           if (res !== null) {
             let literatures = {
               literId: res.literId,

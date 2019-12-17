@@ -93,7 +93,6 @@ export default {
       Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
     this.tabsCur = this.queryObj.literId;
     this.tabs = JSON.parse(getStore("path_ways_detail")) || [];
-    debugger;
   },
   mounted() {
     this.queryData();
@@ -105,7 +104,6 @@ export default {
       this.$nextTick(function() {
         this.queryData();
       });
-      debugger;
     },
 
     queryData() {

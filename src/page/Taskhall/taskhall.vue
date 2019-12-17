@@ -3470,7 +3470,7 @@ export default {
       this.taskNameMap.clear();
       // this.test_models = []
       // this.test_model = []
-      debugger;
+
       let data3 = JSON.parse(this.two_dialog);
       for (var key3 in data3) {
         let id = key3.substring(0, key3.lastIndexOf("_"));
@@ -3665,7 +3665,7 @@ export default {
       this.id = id; // 列表数据id
       this.taskNameMap.clear();
       this.tasklist = [];
-      debugger;
+
       if (
         subCategoryId === 1 ||
         subCategoryId === 2 ||
@@ -3690,8 +3690,7 @@ export default {
         let data = new FormData();
         data.append("id", id);
         getSearch(data).then(res => {
-          debugger;
-          console.log(res);
+          // console.log(res);
           let data2 = JSON.parse(res.templateContent); // 根据获取到的字段名动态生成title和输入框
           for (var key3 in data2) {
             let id = key3.substring(0, key3.lastIndexOf("_"));
@@ -4335,8 +4334,8 @@ export default {
       data.append("flag", flag + 1);
       data.append("name", name);
       receiveTask(data).then(res => {
-        console.log(11111111);
-        console.log(res);
+        // console.log(11111111);
+        // console.log(res);
         this.getTaskList();
         this.$message({
           message: name + "任务领取成功",
@@ -4479,7 +4478,7 @@ export default {
         // this.wpList_secarch = []
         let options = JSON.parse(res);
         this.wpList_options = options;
-        debugger;
+
         let ids = this.wpList_options.map(item => item.id);
         ids = ids.join(",");
         this.searchField = "subCategoryId";
@@ -4499,7 +4498,6 @@ export default {
     },
     // 获取任务大厅数据列表
     getTaskList() {
-      // debugger
       if (
         this.userInfo === null ||
         this.userInfo === "" ||
@@ -4567,8 +4565,8 @@ export default {
           withCredentials: true
         })
           .then(res => {
-            console.log(res);
-            // debugger
+            // console.log(res);
+
             this.taskhall = res.data.list;
             this.name = res.data.list[0].name;
             this.subCategoryId = res.data.list[0].subCategoryId;
@@ -5486,6 +5484,7 @@ export default {
     margin-top: 15px;
     box-sizing: border-box;
     // border: 1px solid rgba(0, 0, 0, 0.14);
+    border: 1px solid #ccc;
     border-radius: 8px;
     // background: #ededed;
     box-shadow: 0 3px 8px -6px rgba(0, 0, 0, 0.1);

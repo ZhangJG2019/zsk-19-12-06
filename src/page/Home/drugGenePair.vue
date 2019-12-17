@@ -4,7 +4,7 @@
     <y-header>
       <div slot="nav"></div>
     </y-header>
-    <label-page>
+    <label-page style=" min-height: calc(100vh - 230px);">
       <div slot="banner-text">
         <h4 class="box-title">
           <i class="drugs-genes-icon"></i>
@@ -190,7 +190,6 @@ export default {
         .then(res => {
           this.loading = false;
           this.tableData = res.list || [];
-          debugger;
           this.listAllNum = res.total;
         })
         .catch(err => {
@@ -198,8 +197,7 @@ export default {
         });
     },
     toSearchContent(geneId, name, type, str, num) {
-      console.log(num);
-      debugger;
+      // console.log(num);
       if (!num) return;
       if (geneId !== "") {
         var routeData = this.$router.resolve({

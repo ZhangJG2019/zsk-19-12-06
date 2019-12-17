@@ -117,7 +117,7 @@ export default {
               id: this.queryData.id || "",
               name: this.queryData.key || ""
             };
-      debugger;
+
       let queryData =
         this.queryData.type === "gene"
           ? getGeneInfoListByGeneId
@@ -126,9 +126,9 @@ export default {
           : getGeneInfoListByDrugId;
       queryData(param)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.loading = false;
-          debugger;
+
           this.geneLabel = res;
         })
         .catch(err => {

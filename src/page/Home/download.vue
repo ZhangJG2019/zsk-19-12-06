@@ -10,12 +10,8 @@
           <el-row>
             <el-col :span="24" style="margin-bottom:20px;">
               <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ path: '/' }" style="font-size:15px;"
-                  >首页</el-breadcrumb-item
-                >
-                <el-breadcrumb-item style="font-size:15px;"
-                  >下载</el-breadcrumb-item
-                >
+                <el-breadcrumb-item :to="{ path: '/' }" style="font-size:15px;">首页</el-breadcrumb-item>
+                <el-breadcrumb-item style="font-size:15px;">下载</el-breadcrumb-item>
               </el-breadcrumb>
             </el-col>
             <el-col :span="24">
@@ -33,14 +29,8 @@
                     :id="item.subCategoryId"
                     @current-change="handleCurrentChange"
                   >
-                    <div
-                      class="right_left"
-                      style="float:left;margin-top:40px; "
-                    >
-                      <span
-                        class="iconfont icon-jiyinsuanfa"
-                        style="font-size:50px;"
-                      ></span>
+                    <div class="right_left" style="float:left;margin-top:40px; ">
+                      <span class="iconfont icon-jiyinsuanfa" style="font-size:50px;"></span>
                     </div>
                     <div
                       class="right_right"
@@ -50,23 +40,19 @@
                         class="left_content"
                         style="float:left; overflow: hidden; text-overflow: ellipsis;white-space: nowrap;width:900px;"
                       >
-                        <span
-                          style="color:#8b94a6;font-size:25px;"
-                          v-text="item.name"
-                        ></span>
+                        <span style="color:#8b94a6;font-size:25px;" v-text="item.name"></span>
                         <br />
                         <span
                           style="color:#8b94a6;font-size:20px;"
                           class="right_title"
                           v-text="detailGroups"
-                        >
-                        </span>
+                        ></span>
                       </div>
                       <img
                         flaot="right"
                         class="right_img"
                         src="../../../static/images/download.png"
-                        alt=""
+                        alt
                         @click="xiazai(item.id, item.url)"
                       />
                     </div>
@@ -87,15 +73,12 @@
                       layout="total, sizes, prev, pager, next, jumper"
                       :total="total"
                       style="float:right;margin:25px 10px 0 0;"
-                    >
-                    </el-pagination>
+                    ></el-pagination>
                   </li>
                   <!-- 分页 2-->
                 </ul>
               </div>
-              <div class="slide_center news h500">
-                暂无数据~
-              </div>
+              <div class="slide_center news h500">暂无数据~</div>
               <!-- 左侧具体内容区 1-->
             </el-col>
           </el-row>
@@ -106,143 +89,143 @@
   </div>
 </template>
 <script>
-import YShelf from '/components/shelf'
-import YButton from '/components/YButton'
-import YHeader from '/common/header'
-import YFooter from '/common/footer'
-import { Download } from '/api/index.js'
-import 'element-ui'
-import axios from 'axios'
+import YShelf from "/components/shelf";
+import YButton from "/components/YButton";
+import YHeader from "/common/header";
+import YFooter from "/common/footer";
+import { Download } from "/api/index.js";
+import "element-ui";
+import axios from "axios";
 export default {
   // 生命周期函数
   data() {
     return {
-      href: '', // 下载路径地址
+      href: "", // 下载路径地址
       id: 0, // 要下载数据的id
-      detailGroups: '', // 所属分类
-      input: '',
+      detailGroups: "", // 所属分类
+      input: "",
       taskhall: [], // 暂存请求到的所有下载列表数据
-      type: '',
-      downloadName: '', // 下载内容名称
-      flag1: 'true', // 分页中，点击下一页
+      type: "",
+      downloadName: "", // 下载内容名称
+      flag1: "true", // 分页中，点击下一页
       total: 1, // 最大条数,初始化默认为1
       currentPage: 1, // 当前页
       pageSize: 8, // 每页8条
-      order: 'uploaddate', // 数据请求参数
-      orderType: 'desc' // 数据请求参数
-    }
+      order: "uploaddate", // 数据请求参数
+      orderType: "desc" // 数据请求参数
+    };
   },
   created() {
-    this.getMsgList()
+    this.getMsgList();
   },
   methods: {
     // 领取任务
     xiazai(id, path) {
-      location.href = 'http://192.168.1.192:8080' + path
+      location.href = "http://192.168.1.192:8080" + path;
       Download(id).then(res => {
         // console.log(res)
-      })
+      });
     },
     // 搜索框
     handleIconClick() {
       // console.log(this.input)
-      if (this.input === '' || this.input === null) {
-        this.searchString = ''
-        this.getMsgList()
+      if (this.input === "" || this.input === null) {
+        this.searchString = "";
+        this.getMsgList();
       } else {
-        this.searchField = 'name'
-        this.searchString = this.input
-        this.searchOper = 'EqualTo'
-        this.getMsgList()
+        this.searchField = "name";
+        this.searchString = this.input;
+        this.searchOper = "EqualTo";
+        this.getMsgList();
       }
     },
     // 下载页具体数据展示
     getMsgList() {
-      var topNew = this.currentPage
-      var pageSize = this.pageSize
-      var orderType = this.orderType
-      var order = this.order
+      var topNew = this.currentPage;
+      var pageSize = this.pageSize;
+      var orderType = this.orderType;
+      var order = this.order;
       // var url = '../../../static/data/taskhall.json'
       var url =
-        '/apis/document/getfiels?page=' +
+        "/apis/document/getfiels?page=" +
         topNew +
-        '&rows=' +
+        "&rows=" +
         pageSize +
-        '&orderType=' +
+        "&orderType=" +
         orderType +
-        '&order=' +
-        order
+        "&order=" +
+        order;
       // var url = '/apis/document/getfiels?page=' + topNew + '&rows=' + pageSize
-      axios.defaults.withCredentials = true
-      let data = new FormData()
-      data.append('page', this.currentPage)
-      data.append('rows', this.pageSize)
+      axios.defaults.withCredentials = true;
+      let data = new FormData();
+      data.append("page", this.currentPage);
+      data.append("rows", this.pageSize);
       data.append(
-        'order',
-        'convert(t.`create_time` USING gbk) COLLATE gbk_chinese_ci'
-      )
-      data.append('orderType', 'asc')
-      if (this.searchString === '') {
-        data.append('search', 'false')
+        "order",
+        "convert(t.`create_time` USING gbk) COLLATE gbk_chinese_ci"
+      );
+      data.append("orderType", "asc");
+      if (this.searchString === "") {
+        data.append("search", "false");
       } else {
-        data.append('search', 'true')
-        data.append('searchField', this.searchField)
-        data.append('searchString', this.searchString)
-        data.append('searchOper', this.searchOper)
+        data.append("search", "true");
+        data.append("searchField", this.searchField);
+        data.append("searchString", this.searchString);
+        data.append("searchOper", this.searchOper);
       }
 
       axios({
-        method: 'get',
+        method: "get",
         url: url,
         withCredentials: true
       }).then(res => {
-        this.currentPage = res.data.pageNum // 当前页
-        this.pageSize = res.data.pageSize // 当前页展示条数
-        this.total = res.data.total // 返回数据总条数
+        this.currentPage = res.data.pageNum; // 当前页
+        this.pageSize = res.data.pageSize; // 当前页展示条数
+        this.total = res.data.total; // 返回数据总条数
         // this.detailGroups = res.data.list
-        let groupName = res.data.list // 获取所属分类
+        let groupName = res.data.list; // 获取所属分类
         for (let i = 0; i < groupName.length; i++) {
           // console.log(groupName[i].detailGroups)
           if (groupName[i].detailGroups === 0) {
-            this.detailGroups = '分类一'
+            this.detailGroups = "分类一";
           } else if (groupName[i].detailGroups === 1) {
-            this.detailGroups = '分类二'
+            this.detailGroups = "分类二";
           } else if (groupName[i].detailGroups === 2) {
-            this.detailGroups = '分类三'
+            this.detailGroups = "分类三";
           } else if (groupName[i].detailGroups === 3) {
-            this.detailGroups = '分类四'
+            this.detailGroups = "分类四";
           }
         }
         if (groupName.length > 0) {
-          this.taskhall = groupName
+          this.taskhall = groupName;
           // console.log(this.taskhall)
           // console.log(this.taskhall[0].path)
         } else {
-          let zuixin = '.zuixin'
-          this.showdiv(zuixin)
+          let zuixin = ".zuixin";
+          this.showdiv(zuixin);
         }
-      })
+      });
     },
     // 当公告、最新事件、最新研究内容没有数据时显示提示
     showdiv(e) {
-      if ($(e).css('display') === 'none') {
+      if ($(e).css("display") === "none") {
         // 如果show是隐藏的
-        $(e).css('display', 'block') // show的display属性设置为block（显示）
+        $(e).css("display", "block"); // show的display属性设置为block（显示）
       } else {
         // 如果show是显示的
-        $(e).css('display', 'none') // show的display属性设置为none（隐藏）
+        $(e).css("display", "none"); // show的display属性设置为none（隐藏）
       }
     },
     // 任务列表数据分页 1
     handleSizeChange(val) {
       // console.log(`每页 ${val} 条`)
-      this.pageSize = val // 动态改变
-      this.getMsgList() // 重新获取数据列表
+      this.pageSize = val; // 动态改变
+      this.getMsgList(); // 重新获取数据列表
     },
     handleCurrentChange(val) {
       // console.log(`当前页: ${val}`)
-      this.currentPage = val // 动态改变
-      this.getMsgList() // 重新获取数据列表
+      this.currentPage = val; // 动态改变
+      this.getMsgList(); // 重新获取数据列表
     }
     // 任务列表数据分页 2
   },
@@ -252,11 +235,11 @@ export default {
     YHeader,
     YFooter
   }
-}
+};
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
-.h500{
-  height:350px;
+.h500 {
+  height: 350px;
 }
 .center_content {
   position: relative;
@@ -278,7 +261,7 @@ export default {
   text-decoration: none;
 }
 .news h2 strong {
-  font: bold 20px 'microsoft yahei';
+  font: bold 20px "microsoft yahei";
   height: 56px;
   padding: 0px 24px;
   box-sizing: border-box;

@@ -106,10 +106,9 @@ export default {
           ? getDrugGeneClinicalGuide
           : getDrugClinicalGuide;
       queryData(param).then(res => {
-        console.log(res);
+        // console.log(res);
         this.chinaListData = res.domestic;
         this.foreignListData = res.foreign;
-        debugger;
       });
     },
     toDetailPage(obj) {
@@ -128,7 +127,7 @@ export default {
     setPageData() {
       let pageData = [];
       if (this.activeName == "first") {
-        console.log(0);
+        // console.log(0);
         this.chinaListData.forEach(res => {
           if (res !== null) {
             let literatures = {
@@ -155,7 +154,7 @@ export default {
           }
         });
       }
-      console.log(2);
+      // console.log(2);、
       setStore("clinical_guidelines", pageData);
     }
   }

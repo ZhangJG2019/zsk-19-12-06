@@ -11,17 +11,6 @@
       </div>
     </div>
     <div class="w clearfix d-flex">
-      <!-- <div class="left-box">
-        <ul class="tips-list">
-          <li class="list-box" :class="{'cur':tabsCur=='0'}" @click="tabsliClick('0')">
-            <i class="el-icon-arrow-right icon-right"></i>3GBio基因位点频率地理分布(中国)
-          </li>
-          <li class="list-box" :class="{'cur':tabsCur=='1'}" @click="tabsliClick('1')">
-            <i class="el-icon-arrow-right icon-right"></i>3GBio基因位点频率地理分布(世界)
-          </li>
-        </ul>
-        <span class="tips-border" :style="{top:(tabIndex*40+35)+'px'}"></span>
-      </div>-->
       <div class="left-box">
         <b style="font-size:16px; color:#333;">题目</b>
         <ul class="tips-list">
@@ -68,17 +57,16 @@ export default {
     this.queryObj =
       Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
     this.tabs = JSON.parse(getStore("data_statistics_hook")) || [];
-    console.log(11111111111111111);
-    console.log(this.tabs);
+    // console.log(11111111111111111);
+    // console.log(this.tabs);
   },
   watch: {
     tabsCur(v) {
-      console.log(v);
       this.componentVue = v == "0" ? ChinaMapBox : WorldMapBox;
     }
   },
   mounted() {
-    this.tabsCur = this.queryObj.typemap;
+    this.tabsCur = this.queryObj.typemap; //判断返回的字符串是不是"0"
   },
   methods: {
     tabsliClick(index) {

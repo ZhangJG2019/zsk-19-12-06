@@ -117,7 +117,7 @@ export default {
       Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
     this.tabsCur = this.queryObj.literId;
     this.tabs = JSON.parse(getStore("clinical_trials")) || [];
-    debugger;
+    
     this.liteName = this.tabs[0].literName;
   },
   mounted() {
@@ -128,20 +128,20 @@ export default {
       if (this.tabsCur == obj.id) return;
       this.tabsCur = obj.literId;
       this.liteName = obj.literName;
-      // debugger
+      
       this.$nextTick(function() {
         this.queryData();
       });
     },
     queryData() {
-      debugger;
+      
       let type = this.queryObj.type;
       let queryDetailData =
         type == "1"
           ? getLiteTrailDomesticVODetailInfo
           : getLiteTrailForeignVODetailInfo;
       queryDetailData({ literId: this.tabsCur }).then(res => {
-        debugger;
+        
         this.dataObj = res;
       });
     },

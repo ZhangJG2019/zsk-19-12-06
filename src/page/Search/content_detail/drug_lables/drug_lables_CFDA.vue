@@ -86,23 +86,17 @@ export default {
     this.tabsCur = this.queryObj.literId;
     this.tabs = JSON.parse(getStore("drug_labels")) || [];
     this.liteName = this.tabs[0].liteName;
-    // debugger;
-    console.log(this.tabs);
+    // console.log(this.tabs);
   },
   mounted() {
     this.queryData();
   },
   methods: {
     tabsliClick(obj, index) {
-      debugger;
-      console.log(1111);
-      console.log(obj);
-      console.log(22222);
-      console.log(index);
       if (this.tabsCur == obj.id) return;
       this.tabsCur = obj.literId;
       this.liteName = obj.liteName;
-      // debugger;
+
       this.$nextTick(function() {
         this.queryData();
       });
@@ -112,9 +106,6 @@ export default {
       let queryDetailData =
         type == "1" ? getLiteCfdaVODetailInfo : getLiteFdaVODetailInfo;
       queryDetailData({ literId: this.tabsCur }).then(res => {
-        debugger;
-        console.log(1111111111);
-        console.log(res);
         this.dataObj = res;
       });
     },

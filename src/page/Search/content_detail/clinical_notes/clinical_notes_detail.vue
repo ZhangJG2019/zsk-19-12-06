@@ -223,7 +223,7 @@ export default {
   methods: {
     tabsliClick(obj, index) {
       this.tabsCur = obj.id;
-      // debugger;
+
       this.$nextTick(function() {
         this.queryData();
       });
@@ -233,11 +233,10 @@ export default {
       let queryDetailData =
         type == "1" ? getLiteCoreVODetailInfo : getLiteSciVODetailInfo;
       queryDetailData({ literId: this.tabsCur }).then(res => {
-        debugger;
         this.dataObj = res;
         this.zongjie = res.liteSciDetailInfoList;
         this.zongjie_china = res.liteCoreDetailInfoList;
-        console.log(this.zongjie);
+        // console.log(this.zongjie);
       });
     },
     topageURL() {

@@ -4,7 +4,7 @@
     <y-header>
       <div slot="nav"></div>
     </y-header>
-    <el-card class="box-card" style="width:76.5rem; margin:0 auto;height:400px;">
+    <el-card class="box-card" style="width:76.5rem; margin:0 auto;">
       <div class="tablecontent">
         <div class="content_title">
           <el-row>

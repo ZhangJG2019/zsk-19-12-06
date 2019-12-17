@@ -56,7 +56,7 @@ export default {
       if (this.tabIndex == index) return;
       this.tabIndex = index;
       this.tabsCur = obj.value;
-      console.log(obj.value);
+      // console.log(obj.value);
       this.getComponentVue(obj.value);
     },
     // 根据点击标签获取组件

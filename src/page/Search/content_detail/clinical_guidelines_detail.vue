@@ -98,23 +98,21 @@ export default {
       Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
     this.tabsCur = this.queryObj.literId;
     this.tabs = JSON.parse(getStore("clinical_guidelines")) || [];
-    console.log(this.tabs[0].href);
-    debugger;
+    // console.log(this.tabs[0].href);
   },
   mounted() {
-    console.log(123);
+    // console.log(123);
     this.queryData();
   },
   methods: {
     prev(num) {
-      debugger;
       if (num == 1) {
         let url = "http://localhost:9999/#" + this.tabs[0].href;
         window.location.href = url;
       } else if (num == 2) {
         // let url = "http://localhost:9999/#" + this.tabs[0].href;
         // window.location.href = url;
-        debugger;
+
         this.$router.go(-2);
       }
     },

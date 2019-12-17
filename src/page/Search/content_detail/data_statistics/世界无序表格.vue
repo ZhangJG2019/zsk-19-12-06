@@ -56,7 +56,7 @@
                 <el-table-column prop="area" label="所属地区" width="120" align="center"></el-table-column>
                 <el-table-column prop="race" label="种族" width="170" align="center"></el-table-column>
                 <el-table-column prop="testSmounts" label="样本量" align="center"></el-table-column>
-                <el-table-column :label="this.tableLabelAA?this.tableLabelAA:'---'" align="center">
+                <el-table-column label="AA" align="center">
                   <el-table-column label="n" align="center">
                     <template slot-scope="scope">{{scope.row.porKeyValueList[1].testSmounts}}</template>
                   </el-table-column>
@@ -64,7 +64,7 @@
                     <template slot-scope="scope">{{scope.row.porKeyValueList[1].proportion}}</template>
                   </el-table-column>
                 </el-table-column>
-                <el-table-column :label="this.tableLabelGG?this.tableLabelGG:'---'" align="center">
+                <el-table-column label="GG" align="center">
                   <el-table-column label="n" align="center">
                     <template slot-scope="scope">{{scope.row.porKeyValueList[0].testSmounts}}</template>
                   </el-table-column>
@@ -72,7 +72,7 @@
                     <template slot-scope="scope">{{scope.row.porKeyValueList[0].proportion}}</template>
                   </el-table-column>
                 </el-table-column>
-                <el-table-column :label="this.tableLabelGA?this.tableLabelGA:'---'" align="center">
+                <el-table-column label="AG" align="center">
                   <el-table-column label="n" align="center">
                     <template slot-scope="scope">{{scope.row.porKeyValueList[2].testSmounts}}</template>
                   </el-table-column>
@@ -334,10 +334,7 @@ export default {
       newArr_European2: [],
       newArr_SouthAsian: [],
       newArr_SouthAsian2: [],
-      tableName: "",
-      tableLabelGG: "", //表格动态标题
-      tableLabelGA: "", //表格动态标题
-      tableLabelAA: "" //表格动态标题
+      tableName: ""
     };
   },
   created() {
@@ -353,23 +350,13 @@ export default {
       getForeignDataInfo({
         id: this.queryObj.id
       }).then(res => {
-        debugger;
-        if (res !== [] || res !== null) {
-          if (
-            res[0].porKeyValueList !== [] ||
-            res[0].porKeyValueList !== undefined
-          ) {
-            this.tableLabelGG = res[0].porKeyValueList[0].porName;
-            this.tableLabelGA = res[0].porKeyValueList[1].porName;
-            this.tableLabelAA = res[0].porKeyValueList[2].porName;
-          }
-          this.chinaData = res;
-          // console.log(res);
-          Object.keys(res).forEach(r => {
-            // r是每个数组名称
-            this.filterTableData(res[r], r); //将数据划分为7大类
-          });
-        }
+        this.chinaData = res;
+        // console.log(11111111111111111);
+        // console.log(this.chinaData);
+        Object.keys(res).forEach(r => {
+          // r是每个数组名称
+          this.filterTableData(res[r], r); //将数据划分为7大类
+        });
       });
     },
     filterTableData(data, str) {

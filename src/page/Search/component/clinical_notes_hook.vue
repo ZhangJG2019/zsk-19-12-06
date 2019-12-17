@@ -123,14 +123,12 @@ export default {
           ? getClinicalAnnotationByDrugGene
           : getClinicalAnnotationByDrug;
       queryData(param).then(res => {
-        console.log(res);
-        debugger;
+        // console.log(res);
         this.combinedClinicalSuggest = res.combinedClinicalSuggest;
         this.geneClinicalSuggest = res.geneClinicalSuggest;
       });
     },
     toDetailPage(obj) {
-      debugger;
       let routeData = null;
       if (this.activeName == "second") {
         routeData = this.$router.resolve({
@@ -158,7 +156,6 @@ export default {
         pageData = this.geneClinicalSuggest || [];
       } else {
         this.combinedClinicalSuggest.forEach(res => {
-          debugger;
           pageData.push({
             projectId: res.projectId,
             projectName: res.projectName,
@@ -166,7 +163,7 @@ export default {
           });
         });
       }
-      console.log(pageData);
+      // console.log(pageData);
       setStore("clinical_notes", pageData);
     }
   }

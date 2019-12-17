@@ -363,7 +363,7 @@ export default {
       this.id = e[1];
       let f = c[2].split("=");
       this.type = f[1];
-      console.log(this.type);
+      // console.log(this.type);
       if (this.type === "drug") {
         var url =
           "/apis/taskApi/getDrugSummaryInfo?name=" +

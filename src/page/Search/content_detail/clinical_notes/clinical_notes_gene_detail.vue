@@ -115,11 +115,11 @@
                       <el-table-column prop="year" width="80" align="center" label="年份"></el-table-column>
                     </el-table>
                   </el-tab-pane>
-                  <el-tab-pane label="国外文献" name="second" :data="dataObj.literatureSciInfoList">
-                    <el-table border style="width: 100%">
+                  <el-tab-pane label="国外文献" name="second">
+                    <el-table border style="width: 100%" :data="dataObj.literatureSciInfoList">
                       <el-table-column type="index" width="50" label="序号" align="center"></el-table-column>
-                      <el-table-column type="index" width="80" label="PMID" align="center"></el-table-column>
-                      <el-table-column prop="genes" label="题目" align="left">
+                      <el-table-column prop="pmid" width="100" label="PMID" align="center"></el-table-column>
+                      <el-table-column label="题目" align="center">
                         <template slot-scope="scope">
                           <p
                             style="border-bottom:none;color:#368ebe;text-align:left;cursor: pointer"
@@ -162,7 +162,6 @@ export default {
     this.tabsCur = this.queryObj.projectId;
     this.tabs = JSON.parse(getStore("clinical_notes")) || [];
     let a = this.tabs.lenght;
-    debugger;
   },
   mounted() {
     this.queryData();
@@ -175,14 +174,13 @@ export default {
       });
     },
     queryData() {
-      // debugger;
+      //
       let param = {
         id: this.tabsCur
       };
       getCombinedClinicalDetails(param).then(res => {
         this.dataObj = res;
-        console.log(this.dataObj);
-        debugger;
+        // console.log(this.dataObj);
       });
     },
     toDetailPage(obj) {
@@ -194,7 +192,7 @@ export default {
           type: this.activeName2 == "first" ? "1" : "2"
         }
       });
-      debugger;
+
       this.setPageData();
       window.open(routeData.href, "_blank");
     },
@@ -202,7 +200,6 @@ export default {
       let pageData = [];
       if (this.activeName2 == "first") {
         this.pageData = this.dataObj.literatureCoreInfoList;
-        debugger;
       } else {
         this.pageData = this.dataObj.literatureSciInfoList;
       }

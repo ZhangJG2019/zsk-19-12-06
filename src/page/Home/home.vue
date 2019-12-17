@@ -282,7 +282,7 @@ export default {
   created() {
     this.getNum(); // 八大类数量
     this.getTopNewss(); // 最新动态
-    this.getname(); // 获取用户信息
+    // this.getname(); // 获取用户信息
   },
   data() {
     return {

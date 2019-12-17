@@ -3,19 +3,29 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="药物信息" name="first">
         <h6 style="margin-top:10px; font-size:20px; color:#333;">概述</h6>
-        <div
-          class="text-box"
-        >
-        <p>知识库提供与基因相关的药物信息，包括药物商品名，药物说明书，药物医保目录，药物相互作用等数据。</p>
-        <p>点击更多查看药物详情数据。</p>
+        <div class="text-box">
+          <p>知识库提供与基因相关的药物信息，包括药物商品名，药物说明书，药物医保目录，药物相互作用等数据。</p>
+          <p>点击更多查看药物详情数据。</p>
         </div>
         <div class="drug-news-box">
           <ul class="section-box-word">
-            <li class="word-list" v-for="(item, index) in dataList" :key="index" @click="toDetailPage(item)">
+            <li
+              class="word-list"
+              v-for="(item, index) in dataList"
+              :key="index"
+              @click="toDetailPage(item)"
+            >
               <i class="word-icon"></i>
               <div style="border-bottom:1px solid #ddd; padding-bottom:10px;">
-                <p style="font-size:18px; color:#222">{{item.name}}<span style="padding-left:15px;font-size:14px; color:#666;"></span>(英文:{{item.englishName}})</p>
-                <p class="clearfix" style=" margin-top:10px; color:#666;"><span class="fr">查看更多</span><span>ATC编码:{{item.atcCode}}</span></p>
+                <p style="font-size:18px; color:#222">
+                  {{item.name}}
+                  <span style="padding-left:15px;font-size:14px; color:#666;"></span>
+                  (英文:{{item.englishName}})
+                </p>
+                <p class="clearfix" style=" margin-top:10px; color:#666;">
+                  <span class="fr">查看更多</span>
+                  <span>ATC编码:{{item.atcCode}}</span>
+                </p>
               </div>
             </li>
           </ul>
@@ -37,7 +47,7 @@ export default {
   data() {
     return {
       activeName: "first",
-      dataList:[]
+      dataList: []
     };
   },
   props: ["queryData"],
@@ -48,16 +58,16 @@ export default {
     handleClick(tab, event) {
       let param = {
         id: this.queryData.id || "",
-        name:this.queryData.key || ""
+        name: this.queryData.key || ""
       };
       let queryData =
         this.queryData.type === "gene"
           ? getDrugInfoListByGene
           : this.queryData.type === "project"
-            ? getDrugInfoListByProject
-            : getDrugInfoListByDrug;
+          ? getDrugInfoListByProject
+          : getDrugInfoListByDrug;
       queryData(param).then(res => {
-        console.log(res);
+        // console.log(res);
         this.dataList = res;
       });
     },

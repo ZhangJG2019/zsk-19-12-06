@@ -267,8 +267,6 @@ export default {
         // window.open('http://localhost:1111/#/taskhall')
         //  path: '/taskall'
       } else {
-        // debugger
-        // alert(111111111)
         this.$message({
           message: "请登录后查看",
           type: "warning"

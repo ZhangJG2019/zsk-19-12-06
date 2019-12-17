@@ -4,53 +4,35 @@
       <div>
         <ul class="footUl">
           <li>
-            <img
-              src="../public/logo-bottom.png"
-              alt
-            />
+            <img src="../public/logo-bottom.png" alt />
           </li>
           <li>
             <p class="links">
-              <a
-                target="_blank"
-                href="http://www.3gbio.com.cn/html/about/intro/"
-              >
+              <a target="_blank" href="http://www.3gbio.com.cn/html/about/intro/">
                 <strong>关于公司</strong>
               </a>
               <a href="####">
                 <strong>|</strong>
               </a>
-              <a
-                target="_blank"
-                href="http://www.3gbio.com.cn/html/privacy/"
-              >
+              <a target="_blank" href="http://www.3gbio.com.cn/html/privacy/">
                 <strong>隐私条款</strong>
               </a>
               <a href="####">
                 <strong>|</strong>
               </a>
-              <a
-                target="_blank"
-                href="http://www.3gbio.com.cn/html/Legal-Notices/"
-              >
+              <a target="_blank" href="http://www.3gbio.com.cn/html/Legal-Notices/">
                 <strong>法律声明</strong>
               </a>
               <a href="####">
                 <strong>|</strong>
               </a>
-              <a
-                target="_blank"
-                href="http://www.3gbio.com.cn/html/mail/"
-              >
+              <a target="_blank" href="http://www.3gbio.com.cn/html/mail/">
                 <strong>企业邮箱</strong>
               </a>
               <a href="####">
                 <strong>|</strong>
               </a>
-              <a
-                target="_blank"
-                href="https://www.cnzz.com/stat/website.php?web_id=4698979"
-              >
+              <a target="_blank" href="https://www.cnzz.com/stat/website.php?web_id=4698979">
                 <strong>站长统计</strong>
               </a>
             </p>
@@ -64,11 +46,7 @@
             </p>
           </li>
           <li>
-            <img
-              src="../public/images/phone.png"
-              style="width:50px;height:50px;float:left;"
-              alt
-            />
+            <img src="../public/images/phone.png" style="width:50px;height:50px;float:left;" alt />
             <p>
               <span style="color:#979A99;">免费服务热线</span>
               <br />
@@ -81,16 +59,16 @@
   </div>
 </template>
 <script>
-import YButton from '/components/YButton'
+import YButton from "/components/YButton";
 export default {
   data() {
-    return {}
+    return {};
   },
   methods: {},
   components: {
     YButton
   }
-}
+};
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
 .links a {

@@ -365,6 +365,9 @@ export const getForeignDataInfo = (params) => {
   return http.fetchGet('/apis/taskApi/getGeneporForeignStatisticsById', {
     params
   })
+  // return http.fetchGet('../../static/data/worlddata.json', {
+  //   params
+  // })
 }
 // 基因信息 详情  药物基因
 export const getGeneInfoListByProjectId = (params) => {

@@ -76,7 +76,11 @@
                 >登录</a>
                 <a href="/#/register" class="zhuce">注册</a>
               </p>
-              <el-dropdown trigger="click" v-if="this.userName!==null">
+              <el-dropdown
+                trigger="click"
+                v-if="this.userName!==null"
+                style="color:#000;cursor: pointer;"
+              >
                 <span class="el-dropdown-link">
                   <span style="color:#000;cursor: pointer;" class="iconfont icon-weibiaoti12"></span>
                   菜单
@@ -107,9 +111,9 @@
                   <el-dropdown-item class="clearfix">
                     <p @click.stop="bangzhu">帮助</p>
                   </el-dropdown-item>
-                  <el-dropdown-item class="clearfix">
+                  <!-- <el-dropdown-item class="clearfix">
                     <a to="/">关于</a>
-                  </el-dropdown-item>
+                  </el-dropdown-item>-->
                   <el-dropdown-item class="clearfix">
                     <p class="name" v-text="this.userName"></p>
                   </el-dropdown-item>
@@ -167,7 +171,6 @@ export default {
     this.getTopNews();
     this.getNewContent();
     this.getNotice();
-    this.getname();
   },
   methods: {
     // 任务大厅栏目条转
@@ -222,9 +225,6 @@ export default {
           window.location.href =
             "http://47.105.75.254:9100/cas?service=http://47.105.75.254:8080/jump";
         });
-        // .catch(() => {
-        //   window.location.href = this.$route.query.href;
-        // });
       }
     },
     // 帮助跳转
@@ -310,42 +310,67 @@ export default {
     },
     // 获取用户信息
     getname() {
-      userInfo().then(res => {
-        if (
-          res !== [] ||
-          res !== {} ||
-          res !== null ||
-          res !== "" ||
-          res !== undefined
-        ) {
-          let menuCode = new Set();
+      // debugger;
+      userInfo()
+        .then(res => {
           if (
-            res.data.user !== "" &&
-            res.data.user !== null &&
-            res.data.user !== undefined
+            res === [] ||
+            res === {} ||
+            res === null ||
+            res === "" ||
+            res === undefined
           ) {
-            let user = res.data.user;
-            this.userName = user.username;
-            this.loginShow = true;
-            let role = user.roleVo;
-            if (role !== null) {
-              role.permissionVoList.map(item =>
-                item.menuList.map(it => menuCode.add(it.code))
-              );
-            }
-            user.roleVo = menuCode;
-            setStore("userInfo", user);
+            // console.log(11111111);
+            // console.log(res);
           } else {
-            this.$message({
-              message: "用户信息未获取到",
-              type: "error"
-            });
+            let menuCode = new Set();
+            if (
+              res.data.user !== "" &&
+              res.data.user !== null &&
+              res.data.user !== undefined
+            ) {
+              let user = res.data.user;
+              this.userName = user.username;
+              this.loginShow = true;
+              let role = user.roleVo;
+              if (role !== null) {
+                role.permissionVoList.map(item =>
+                  item.menuList.map(it => menuCode.add(it.code))
+                );
+              }
+              user.roleVo = menuCode;
+              setStore("userInfo", user);
+            } else {
+              this.$message({
+                message: "用户信息未获取到",
+                type: "error"
+              });
+            }
           }
-        }
-      });
+        })
+        .catch(function(error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            // console.log(error.response.data);
+            // console.log(error.response.status);
+            if (error.response.status === 404) {
+              return;
+            }
+            // console.log(error.response.headers);
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            // console.log(error.request); //kong
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            // console.log("Error", error.message); //kong
+          }
+          // console.log(error.config);
+        });
     },
     See(e) {
-      debugger;
       window.open(e, "_blank");
     },
     ...mapMutations([
@@ -521,6 +546,7 @@ export default {
     if (typeof this.$route.query.key !== undefined) {
       this.userinput = this.$route.query.key;
     }
+    this.getname();
   },
   components: {
     YButton

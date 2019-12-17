@@ -4,7 +4,7 @@
     <y-header>
       <div slot="nav"></div>
     </y-header>
-    <label-page>
+    <label-page style=" min-height: calc(100vh - 230px);">
       <div slot="banner-text">
         <h4 class="box-title">
           <i class="jiyin-icon"></i>
@@ -171,7 +171,7 @@ export default {
         });
     },
     toSearchContent(geneId, name, type, str, num) {
-      console.log(num);
+      // console.log(num);
       if (!num) return;
       let routeData = this.$router.resolve({
         path: "/searchContent",
@@ -202,9 +202,8 @@ export default {
       window.open(routeData.href, "_blank");
     },
     toWeidDetail(obj) {
-      console.log(111111111111);
-      console.log(obj);
-      debugger;
+      // console.log(111111111111);
+      // console.log(obj);
       let routeData = this.$router.resolve({
         path: "/c-n-w-detail",
         query: {
@@ -219,7 +218,6 @@ export default {
           projectName: obj.porName
         }
       ];
-      debugger;
       setStore("clinical_notes", param);
       window.open(routeData.href, "_blank");
     }

@@ -4,7 +4,7 @@
     <y-header>
       <div slot="nav"></div>
     </y-header>
-    <label-page>
+    <label-page style=" min-height: calc(100vh - 230px);">
       <div slot="banner-text">
         <h4 class="box-title">
           <i class="jiyin-icon"></i>
@@ -150,9 +150,8 @@ export default {
           this.loading = false;
           this.tableData = res.list || [];
           this.listAllNum = res.total;
-          console.log(this.tableData);
-          console.log(this.tableData[0].geneID);
-          debugger;
+          // console.log(this.tableData);
+          // console.log(this.tableData[0].geneID);
         })
         .catch(err => {
           this.loading = false;
@@ -167,10 +166,9 @@ export default {
           type: type
         }
       });
-      console.log(geneID);
-      console.log(name);
-      console.log(type);
-      debugger;
+      // console.log(geneID);
+      // console.log(name);
+      // console.log(type);
       window.open(routeData.href, "_blank");
     }
   },

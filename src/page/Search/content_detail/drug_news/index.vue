@@ -309,11 +309,7 @@ export default {
         });
         return;
       }
-      debugger;
-
       if (str.indexOf(".doc") > 0) {
-        debugger;
-
         window.open(
           "http://view.officeapps.live.com/op/view.aspx?src=" + this.burl + str,
           "_blank"

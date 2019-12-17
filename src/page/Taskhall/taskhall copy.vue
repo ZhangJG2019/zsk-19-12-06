@@ -4389,7 +4389,6 @@ export default {
       this.taskNameMap.clear();
       // this.test_models = []
       // this.test_model = []
-      debugger;
       let data3 = JSON.parse(this.two_dialog);
       for (var key3 in data3) {
         let id = key3.substring(0, key3.lastIndexOf("_"));

@@ -2,59 +2,74 @@
 <template>
   <div class="login v2">
     <div class="wrapper">
-      <div class="dialog dialog-shadow" style="display: block; margin-top: -362px;">
+      <div class="dialog dialog-shadow" style="display: table-cell; margin-top: -362px;">
         <div class="registered">
-          <h4>注册 三济生物 账号</h4>
-          <div class="content_center" style="margin-top:40px">
+          <img
+            src="../../../static/images/insertLogo.png"
+            alt
+            style="margin:20px auto;display:table-cell;"
+          />
+          <h3>精准用药知识库</h3>
+          <h4>Precise Medicine Knowledge Base</h4>
+          <div class="content_center" style="margin-top:40px;padding-bottom: 40px;">
             <el-form
               :model="ruleForm"
               status-icon
               :rules="loginFormRules"
               ref="ruleForm"
-              label-width="80px"
+              label-width="60px"
               class="demo-ruleForm"
             >
-              <el-form-item label="用户名" prop="username">
+              <el-form-item prop="username">
                 <el-input
                   clearable
+                  prefix-icon="el-icon-user"
                   class="inputMsg"
                   v-model="ruleForm.username"
                   autocomplete="off"
                   placeholder="请输入用户名"
                 ></el-input>
               </el-form-item>
-              <el-form-item label="密码" prop="password">
+              <el-form-item prop="password">
                 <el-input
                   clearable
                   class="inputMsg"
                   type="password"
+                  prefix-icon="el-icon-lock"
                   v-model="ruleForm.password"
                   autocomplete="off"
                   placeholder="请输入密码"
                 ></el-input>
               </el-form-item>
-              <el-form-item label="手机号" prop="mobile">
-                <el-input clearable class="inputMsg" v-model="ruleForm.mobile" placeholder="请输入手机号"></el-input>
-              </el-form-item>
-              <el-form-item label="验证码" prop="verifyCode">
+              <el-form-item prop="mobile">
                 <el-input
                   clearable
+                  prefix-icon="el-icon-mobile"
+                  class="inputMsg"
+                  v-model="ruleForm.mobile"
+                  placeholder="请输入手机号"
+                ></el-input>
+              </el-form-item>
+              <el-form-item prop="verifyCode">
+                <el-input
+                  clearable
+                  prefix-icon="iconfont icon-yanzhengma"
+                  class="smsMsg"
                   v-model="ruleForm.verifyCode"
-                  style="width: 50%;"
+                  style="width: 63%;border-right: none; border-radius: 5px 0 0 5px;"
                   placeholder="请输入验证码"
                   :maxlength="6"
                 ></el-input>
                 <el-button
-                  class="smsMsg"
-                  type="primary"
+                  class="smsMsg_btn"
+                  style="margin-left: -4px;  border-radius: 0 5px 5px 0;"
                   @click="sendcode"
                   :disabled="disabled"
                   v-if="disabled == false"
-                  style="margin-left:15px"
                 >发送验证码</el-button>
                 <el-button
-                  class="smsMsg"
-                  type="button"
+                  style="margin-left: -4px;  border-radius: 0 5px 5px 0;"
+                  class="smsMsg_btn"
                   @click="sendcode"
                   :disabled="disabled"
                   v-if="disabled == true"
@@ -68,23 +83,76 @@
                     <a href="####">《三济隐私权保护声明》</a>
                   </el-checkbox>
                 </el-checkbox-group>
-              </el-form-item> -->
+              </el-form-item>-->
               <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-                <el-button @click="resetForm('ruleForm')">重置</el-button>
+                <el-button
+                  type="success"
+                  @click="submitForm('ruleForm')"
+                  style="padding-left:130px;padding-right:130px;margin-bottom: 20px;"
+                >快速注册</el-button>
+                <!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
               </el-form-item>
             </el-form>
-            <div class="border" style="margin-bottom: 10px;"></div>
-            <ul class="common-form pr">
+            <el-divider style="padding:20px 0;">
+              <a
+                style="background-color:#f0f0f0;padding:0;"
+                href="http://47.105.75.254:9100/cas?service=http://47.105.75.254:8080/jump"
+              >直接登录</a>
+              <!-- <a
+                style="background-color:#f0f0f0;padding:0;"
+                href="http://47.105.75.254:9100/cas?service=http://47.105.75.254:8080/jump"
+              >首页</a>-->
+            </el-divider>
+            <!--  <ul class="common-form pr">
               <li
                 style="text-align: center;line-height: 48px;margin-bottom: 0;font-size: 12px;color: #999;"
               >
                 <span>如果您已拥有 三济生物 账号，则可在此</span>
                 <a href="javascript:;" style="margin: 0 5px" @click="toLogin">登陆</a>
               </li>
-            </ul>
+            </ul>-->
           </div>
         </div>
+      </div>
+      <div class="border" style="text-align:center;width: 100%;">
+        <p class="links" style="height:30px;">
+          <a target="_blank" href="http://www.3gbio.com.cn/html/about/intro/">
+            <span>关于公司</span>
+          </a>
+          <a href="####">
+            <span>|</span>
+          </a>
+          <a target="_blank" href="http://www.3gbio.com.cn/html/privacy/">
+            <span>隐私条款</span>
+          </a>
+          <a href="####">
+            <span>|</span>
+          </a>
+          <a target="_blank" href="http://www.3gbio.com.cn/html/Legal-Notices/">
+            <span>法律声明</span>
+          </a>
+          <a href="####">
+            <span>|</span>
+          </a>
+          <a target="_blank" href="http://www.3gbio.com.cn/html/mail/">
+            <span>企业邮箱</span>
+          </a>
+          <a href="####">
+            <span>|</span>
+          </a>
+          <a target="_blank" href="https://www.cnzz.com/stat/website.php?web_id=4698979">
+            <span>站长统计</span>
+          </a>
+        </p>
+        <el-divider></el-divider>
+        <p class="copyright" style="height:30px;">
+          <a
+            target="_blank"
+            href="http://www.miibeian.gov.cn/"
+            style="color:#8e8e8e;"
+          >湘ICP备18007563号-1</a>
+          <span style="color:#8e8e8e;">长沙三济生物科技有限公司 copyright 2012 © 版权所有</span>
+        </p>
       </div>
     </div>
   </div>
@@ -178,7 +246,7 @@ export default {
           url: url
         }).then(res => {
           // this.phonedata = res.data
-          console.log(res);
+          // console.log(res);
           this.$message({
             message: "发送成功",
             type: "success",
@@ -213,7 +281,7 @@ export default {
           data.append("verifyCode", this.ruleForm.verifyCode);
           regist(data)
             .then(res => {
-              console.log("RES=1" + res);
+              // console.log("RES=1" + res);
               if (res.status === 0) {
                 this.$message({
                   message: res.message,
@@ -223,7 +291,7 @@ export default {
                   path: "/"
                 });
               } else {
-                console.log("RES=其他" + res);
+                // console.log("RES=其他" + res);
                 this.$message.error(res.message);
                 this.ruleForm.verifyCode = "";
                 return this.$router.push({
@@ -232,14 +300,14 @@ export default {
               }
             })
             .catch(res => {
-              console.log(222222222);
+              // console.log(222222222);
               this.$message({
                 message: res.message,
                 type: "error"
               });
             });
         } else {
-          console.log(333);
+          // console.log(333);
           return false;
         }
       });
@@ -250,7 +318,8 @@ export default {
       this.$refs[formName].resetFields();
     },
     toLogin() {
-      window.location.href = "http://47.105.75.254:9100/cas?service=http://47.105.75.254:8080/jump";
+      window.location.href =
+        "http://47.105.75.254:9100/cas?service=http://47.105.75.254:8080/jump";
     }
   },
   mounted() {},
@@ -261,12 +330,34 @@ export default {
 };
 </script>
 <style lang="scss" rel="stylesheet/scss" >
+.links a {
+  color: #8e8e8e;
+}
+.el-divider--horizontal {
+  margin: 10px 0 !important;
+}
+.content_center .el-divider__text {
+  padding: 0 5px;
+  background-color: #f0f0f0;
+  font-size: 16px;
+}
+.content_center .el-divider--horizontal {
+  margin: 50px 0;
+}
+.smsMsg input.el-input__inner {
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
+.smsMsg_btn button {
+  margin-left: -4px;
+  border-radius: 0 5px 5px 0;
+}
 * {
   box-sizing: content-box;
 }
 .el-form-item__content,
 .inputMsg el-input {
-  margin-right: 50px !important;
+  margin-right: 60px !important;
 }
 .el-form-item__content {
   text-align: center;
@@ -359,7 +450,6 @@ export default {
     }
   }
 }
-
 .dialog-shadow,
 .v2 .bbs .dialog-shadow,
 .v2 .dialog-shadow {
@@ -416,8 +506,11 @@ export default {
   }
 
   .border {
-    margin-top: 10px;
-    border-bottom: 1px solid #ccc;
+    position: absolute;
+    bottom: 0;
+    // top: 50%;
+    // left: 50%;
+    // margin-left: -225px;
   }
   .other {
     margin: 20px 5px 0 0;
@@ -438,18 +531,29 @@ export default {
 }
 
 .registered {
-  h4 {
+  h3 {
     padding: 0;
     text-align: center;
-    color: #666;
-    border-bottom: 1px solid #dcdcdc;
+    color: #000;
+    // border-bottom: 1px solid #dcdcdc;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
     font-weight: 700;
-    font-size: 20px;
-    height: 60px;
-    line-height: 60px;
+    font-size: 40px;
+    // height: 60px;
+    // line-height: 60px;
+  }
+  h4 {
+    padding: 0;
+    text-align: center;
+    color: #666;
+    // border-bottom: 1px solid #dcdcdc;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    font-weight: 700;
+    font-size: 16px;
   }
 }
 

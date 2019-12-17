@@ -162,7 +162,6 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      // debugger
       let param = {
         id: this.queryData.id || "",
         name: this.queryData.key || ""
@@ -180,7 +179,7 @@ export default {
           : getClinicalTrialInfoByDrugId;
       queryData(param)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.loading = false;
           this.china_clinical_trials = res.domestic;
           this.foreign_clinical_trials = res.foreign;
@@ -190,14 +189,12 @@ export default {
         });
     },
     toDetailPage(obj) {
-      console.log(1212);
-      console.log(obj);
-      debugger;
+      // console.log(1212);
+      // console.log(obj);
       if (!obj || !obj.literId) return;
       let id = obj.literId;
       let routeData;
       if (this.activeName === "first") {
-        debugger;
         routeData = this.$router.resolve({
           path: "/c-t-c-detail",
           query: {
@@ -215,15 +212,13 @@ export default {
         });
       }
       this.setPageData();
-      debugger;
+
       window.open(routeData.href, "_blank");
     },
     setPageData() {
-      debugger;
       let pageData = [];
       if (this.activeName === "first") {
         this.china_clinical_trials.forEach(res => {
-          debugger;
           if (res !== null) {
             // var literatures = {};
             let literatures = {
@@ -238,7 +233,6 @@ export default {
         // setStore("clinical_trials", pageData);
       } else {
         this.foreign_clinical_trials.forEach(res => {
-          // debugger
           if (res !== null) {
             // var literatures = {};
             let literatures = {

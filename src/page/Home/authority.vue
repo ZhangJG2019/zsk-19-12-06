@@ -4,7 +4,7 @@
     <y-header>
       <div slot="nav"></div>
     </y-header>
-    <label-page>
+    <label-page ref="homePage" style=" min-height: calc(100vh - 230px);">
       <div slot="banner-text">
         <h4 class="box-title">
           <i class="authority-icon"></i>
@@ -188,6 +188,7 @@ export default {
 
   data() {
     return {
+      clientHeight: "",
       isTextInput: true,
       options: styleConfig.authority,
       search: false,
@@ -206,15 +207,32 @@ export default {
   created() {
     this.getListDatas();
   },
+  mounted() {
+    // 获取浏览器可视区域高度
+    this.clientHeight = `${document.documentElement.clientHeight}`; //document.body.clientWidth;
+    //console.log(self.clientHeight);
+    window.onresize = function temp() {
+      this.clientHeight = `${document.documentElement.clientHeight}`;
+    };
+  },
   watch: {
+    // 如果 `clientHeight` 发生改变，这个函数就会运行
+    clientHeight: function() {
+      this.changeFixed(this.clientHeight);
+    },
     filterSValue(val) {
       this.isTextInput = splitLabel(val)[0] != "source";
     }
   },
-  mounted() {},
   methods: {
+    // 动态修改样式
+    changeFixed(clientHeight) {
+      //动态修改样式
+      console.log(clientHeight);
+      this.$refs.homePage.style.height = clientHeight + "px";
+    },
     pageChange(v) {
-      if (v == this.pageNum) return;
+      if (v == this.pageNum) return; //当下一页与返回数据一样时，即说明已到达最后一页
       this.pageNum = v;
       this.getListDatas();
       document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -246,7 +264,7 @@ export default {
         .then(res => {
           let data = JSON.parse(res.result);
           this.loading = false;
-          console.log(data);
+          // console.log(data);
           this.tableData = data || {};
           this.listAllNum = data.total;
         })
@@ -259,7 +277,7 @@ export default {
       return arr.filter(res => res.source == str);
     },
     toSearchContent(geneId, name, type, str, num) {
-      console.log(num);
+      // console.log(num);
       if (!num) return;
       let routeData = this.$router.resolve({
         path: "/searchContent",

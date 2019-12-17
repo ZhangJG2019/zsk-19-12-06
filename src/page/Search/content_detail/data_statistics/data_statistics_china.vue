@@ -11,26 +11,35 @@
           <el-tab-pane label="地区" name="first">
             <div class="detail-box-top">
               <div id="myMap" ref="myMap" style="width: 900px; height: 500px;"></div>
+              <div id='areabox' style="width: 900px; height: 500px; display:none;"></div>
             </div>
           </el-tab-pane>
           <el-tab-pane label="性别" name="second">
             <div class="detail-box-top">
-              <div id="sex" style="width: 900px;height:500px;"></div>
+              <!-- <div id="sex" style="width: 900px;height:500px;"></div> -->
+              <div id='sexbox' style="width: 900px; height: 500px;"></div>
+
             </div>
           </el-tab-pane>
           <el-tab-pane label="年龄段" name="third">
             <div class="detail-box-top">
-              <div id="agegroup" style="width: 900px;height:500px;"></div>
+              <!-- <div id="agegroup" style="width: 900px;height:500px;"></div> -->
+              <div id='ageGroupbox' style="width: 900px; height: 500px;"></div>
+
             </div>
           </el-tab-pane>
           <el-tab-pane label="样本类型" name="fourth">
             <div class="detail-box-top">
-              <div id="sample-type" style="width: 900px;height:500px;"></div>
+              <!-- <div id="sample-type" style="width: 900px;height:500px;"></div> -->
+              <div id='sampleTypebox' style="width: 900px; height: 500px;"></div>
+
             </div>
           </el-tab-pane>
           <el-tab-pane label="年份" name="five">
             <div class="detail-box-top">
-              <div id="year" style="width: 900px;height:500px;"></div>
+              <!-- <div id="year" style="width: 900px;height:500px;"></div> -->
+              <div id='yearbox' style="width: 900px; height: 500px;"></div>
+
             </div>
           </el-tab-pane>
         </el-tabs>
@@ -45,31 +54,31 @@
               <el-table border style="width: 100%" :data="areaTData">
                 <el-table-column prop="typeName" label="地区" align="center"></el-table-column>
                 <el-table-column label="样本量" align="center">
-                  <template slot-scope="scope">{{addNumder(scope.row.AA,scope.row.GA,scope.row.GG)}}</template>
+                  <template slot-scope="scope">{{addNumder(scope.row[param[0]],scope.row[param[1]],scope.row[param[2]])}}</template>
                 </el-table-column>
                 <el-table-column label="基因型" align="center" width="100%">
-                  <el-table-column label="AA" align="center">
-                    <el-table-column prop="AA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[0]?param[0]:'CC'" align="center">
+                    <el-table-column :prop="param[0]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.AA?(Number(scope.row.AA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[0]]?(Number(scope.row[param[0]])/addNumder(scope.row[param[0]],scope.row[param[1]],scope.row[param[2]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GG" align="center">
-                    <el-table-column prop="GG" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[1]?param[1]:'CT'" align="center">
+                    <el-table-column :prop="param[1]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GG?(Number(scope.row.GG)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[1]]?(Number(scope.row[param[1]])/addNumder(scope.row[param[0]],scope.row[param[1]],scope.row[param[2]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GA" align="center">
-                    <el-table-column prop="GA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[2]?param[2]:'TT'" align="center">
+                    <el-table-column :prop="param[2]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GA?(Number(scope.row.GA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[2]]?(Number(scope.row[param[2]])/addNumder(scope.row[param[0]],scope.row[param[1]],scope.row[param[2]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
                 </el-table-column>
@@ -83,31 +92,31 @@
                   <template slot-scope="scope">{{["女", "男", "保密", "未记录性别"][scope.row.typeName]}}</template>
                 </el-table-column>
                 <el-table-column label="样本量" align="center">
-                  <template slot-scope="scope">{{addNumder(scope.row.AA,scope.row.GA,scope.row.GG)}}</template>
+                  <template slot-scope="scope">{{addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])}}</template>
                 </el-table-column>
                 <el-table-column label="基因型" align="center" width="100%">
-                  <el-table-column label="AA" align="center">
-                    <el-table-column prop="AA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[0]?param[0]:'C'" align="center">
+                    <el-table-column :prop="param[0]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.AA?(Number(scope.row.AA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[0]]?(Number(scope.row[param[0]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GG" align="center">
-                    <el-table-column prop="GG" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[1]" align="center">
+                    <el-table-column :prop="param[1]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GG?(Number(scope.row.GG)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[1]]?(Number(scope.row[param[1]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GA" align="center">
-                    <el-table-column prop="GA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[2]" align="center">
+                    <el-table-column :prop="param[2]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GA?(Number(scope.row.GA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[2]]?(Number(scope.row[param[2]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
                 </el-table-column>
@@ -119,31 +128,31 @@
               <el-table border style="width: 100%" :data="ageTGroupData">
                 <el-table-column prop="typeName" label="年龄段" align="center"></el-table-column>
                 <el-table-column label="样本量" align="center">
-                  <template slot-scope="scope">{{addNumder(scope.row.AA,scope.row.GA,scope.row.GG)}}</template>
+                  <template slot-scope="scope">{{addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])}}</template>
                 </el-table-column>
                 <el-table-column label="基因型" align="center" width="100%">
-                  <el-table-column label="AA" align="center">
-                    <el-table-column prop="AA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[0]?param[0]:'C'" align="center">
+                    <el-table-column :prop="param[0]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.AA?(Number(scope.row.AA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[0]]?(Number(scope.row[param[0]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GG" align="center">
-                    <el-table-column prop="GG" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[1]" align="center">
+                    <el-table-column :prop="param[1]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GG?(Number(scope.row.GG)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[1]]?(Number(scope.row[param[1]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GA" align="center">
-                    <el-table-column prop="GA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[2]" align="center">
+                    <el-table-column :prop="param[2]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GA?(Number(scope.row.GA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[2]]?(Number(scope.row[param[2]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
                 </el-table-column>
@@ -155,31 +164,31 @@
               <el-table border style="width: 100%" :data="sampleTypeTData">
                 <el-table-column prop="typeName" label="样本类型" align="center"></el-table-column>
                 <el-table-column label="样本量" align="center">
-                  <template slot-scope="scope">{{addNumder(scope.row.AA,scope.row.GA,scope.row.GG)}}</template>
+                  <template slot-scope="scope">{{addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])}}</template>
                 </el-table-column>
                 <el-table-column label="基因型" align="center" width="100%">
-                  <el-table-column label="AA" align="center">
-                    <el-table-column prop="AA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[0]?param[0]:'C'" align="center">
+                    <el-table-column :prop="param[0]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.AA?(Number(scope.row.AA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[0]]?(Number(scope.row[param[0]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GG" align="center">
-                    <el-table-column prop="GG" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[1]" align="center">
+                    <el-table-column :prop="param[1]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GG?(Number(scope.row.GG)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[1]]?(Number(scope.row[param[1]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GA" align="center">
-                    <el-table-column prop="GA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[2]" align="center">
+                    <el-table-column :prop="param[2]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GA?(Number(scope.row.GA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[2]]?(Number(scope.row[param[2]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
                 </el-table-column>
@@ -191,31 +200,31 @@
               <el-table border style="width: 100%" :data="yearTData">
                 <el-table-column prop="typeName" label="年份" align="center"></el-table-column>
                 <el-table-column label="样本量" align="center">
-                  <template slot-scope="scope">{{addNumder(scope.row.AA,scope.row.GA,scope.row.GG)}}</template>
+                  <template slot-scope="scope">{{addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])}}</template>
                 </el-table-column>
                 <el-table-column label="基因型" align="center" width="100%">
-                  <el-table-column label="AA" align="center">
-                    <el-table-column prop="AA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[0]?param[0]:'C'" align="center">
+                    <el-table-column :prop="param[0]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.AA?(Number(scope.row.AA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[0]]?(Number(scope.row[param[0]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GG" align="center">
-                    <el-table-column prop="GG" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[1]" align="center">
+                    <el-table-column :prop="param[1]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GG?(Number(scope.row.GG)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[1]]?(Number(scope.row[param[1]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
-                  <el-table-column label="GA" align="center">
-                    <el-table-column prop="GA" label="n" align="center"></el-table-column>
+                  <el-table-column :label="param[2]" align="center">
+                    <el-table-column :prop="param[2]" label="n" align="center"></el-table-column>
                     <el-table-column label="%" align="center">
                       <template
                         slot-scope="scope"
-                      >{{scope.row.GA?(Number(scope.row.GA)/addNumder(scope.row.AA,scope.row.GA,scope.row.GG)*100).toFixed(2):'--'}}</template>
+                      >{{scope.row[param[2]]?(Number(scope.row[param[2]])/addNumder(scope.row[param[0]],scope.row[param[2]],scope.row[param[1]])*100).toFixed(2):'--'}}</template>
                     </el-table-column>
                   </el-table-column>
                 </el-table-column>
@@ -256,7 +265,8 @@ export default {
       activeName1: "first",
       activeName2: "first",
       queryObj: {},
-      from: ""
+      from: "",
+      param:[]
     };
   },
   created() {
@@ -278,7 +288,7 @@ export default {
     },
     drawChinaMap() {
       let option = echartFun.map(this.areaData);
-      console.log(option, 1);
+
       this.chinaChart = echarts.init(document.getElementById("myMap"));
       this.chinaChart.setOption(option);
     },
@@ -315,47 +325,46 @@ export default {
           });
           this.drawChinaMap();
         }
-        if (res.sex) {
-          let sexData = this.joinData(res.sex, "typeName");
-          this.sexData = sexData.map(list => {
-            return {
-              name: ["女", "男", "保密", "未记录性别"][list.typeName],
-              value: list.amount
-            };
-          });
-          this.drawSex("sex");
-        }
-        if (res.ageGroup) {
-          let ageGroup = this.joinData(res.ageGroup, "typeName");
-          this.ageGroupData = ageGroup.map(list => {
-            return {
-              name: list.typeName,
-              value: list.amount
-            };
-          });
-          this.drawSex("ageGroup");
-        }
-        if (res.sampleType) {
-          let sampleType = this.joinData(res.sampleType, "typeName");
-          this.sampleTypeData = sampleType.map(list => {
-            return {
-              name: list.typeName,
-              value: list.amount
-            };
-          });
-          this.drawSex("sampleType");
-        }
-        if (res.year) {
-          let year = this.joinData(res.year, "typeName");
-          this.yearData = year.map(list => {
-            return {
-              name: list.typeName,
-              value: list.amount
-            };
-          });
-          this.drawSex("year");
-        }
-        console.log(this.chinaData);
+        // if (res.sex) {
+        //   let sexData = this.joinData(res.sex, "typeName");
+        //   this.sexData = sexData.map(list => {
+        //     return {
+        //       name: ["女", "男", "保密", "未记录性别"][list.typeName],
+        //       value: list.amount
+        //     };
+        //   });
+        //   this.drawSex("sex");
+        // }
+        // if (res.ageGroup) {
+        //   let ageGroup = this.joinData(res.ageGroup, "typeName");
+        //   this.ageGroupData = ageGroup.map(list => {
+        //     return {
+        //       name: list.typeName,
+        //       value: list.amount
+        //     };
+        //   });
+        //   this.drawSex("ageGroup");
+        // }
+        // if (res.sampleType) {
+        //   let sampleType = this.joinData(res.sampleType, "typeName");
+        //   this.sampleTypeData = sampleType.map(list => {
+        //     return {
+        //       name: list.typeName,
+        //       value: list.amount
+        //     };
+        //   });
+        //   this.drawSex("sampleType");
+        // }
+        // if (res.year) {
+        //   let year = this.joinData(res.year, "typeName");
+        //   this.yearData = year.map(list => {
+        //     return {
+        //       name: list.typeName,
+        //       value: list.amount
+        //     };
+        //   });
+        //   this.drawSex("year");
+        // }
       });
     },
     joinData(arr, str) {
@@ -363,7 +372,7 @@ export default {
       let copyArr = JSON.parse(JSON.stringify(arr));
       for (let i = 0; i < copyArr.length; i++) {
         let filterD = newArr.findIndex(res => res[str] == copyArr[i][str]);
-        console.log(filterD);
+
         if (filterD < 0) {
           newArr.push(copyArr[i]);
         } else {
@@ -376,6 +385,7 @@ export default {
       if (typeof data == "string") return;
       let newArr = [];
       let copyArr = JSON.parse(JSON.stringify(data));
+      let paramArr=[];
       for (let i = 0; i < copyArr.length; i++) {
         let filterD = newArr.findIndex(
           res => res.typeName == copyArr[i].typeName
@@ -407,6 +417,18 @@ export default {
           this.yearTData = newArr;
           break;
       }
+      newArr.forEach(function(dat){
+        let obj=Object.keys(dat);
+        paramArr.push(...obj);
+      })
+      this.param=[...new Set(paramArr)].filter(res=>res != 'typeName');
+      this.barLineEchart(str,newArr);
+    },
+    barLineEchart(str,arr){
+      let $dom=str+"box";
+      let param=JSON.stringify(this.param);
+      let dataArr=JSON.parse(JSON.stringify(arr))
+      echartFun.bar($dom,{data:dataArr},param)
     }
   },
   mounted() {}

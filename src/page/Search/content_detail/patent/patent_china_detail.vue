@@ -121,14 +121,12 @@ export default {
     this.tabsCur = this.queryObj.literId;
     this.tabs = JSON.parse(getStore("patent")) || [];
     this.type = this.tabs[0].type;
-    debugger;
   },
   mounted() {
     this.queryData();
   },
   methods: {
     tabsliClick(obj, index) {
-      debugger;
       if (this.tabsCur == obj.id) return;
       this.tabsCur = obj.literId;
       this.$nextTick(function() {
@@ -142,7 +140,6 @@ export default {
           ? getLitePatentDomesticVODetailInfo
           : getLitePatentForeignVODetailInfo;
       queryDetailData({ literId: this.tabsCur }).then(res => {
-        debugger;
         this.dataObj = res;
       });
     },

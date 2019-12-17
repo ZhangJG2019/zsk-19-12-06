@@ -416,7 +416,7 @@ export default {
 </style>
 <style lang="scss">
 .taskhall .el-card__body {
-  min-height: 370px;
+  // min-height: 370px;
   padding-top: 0px !important;
 }
 .content_title .el-loading-spinner {

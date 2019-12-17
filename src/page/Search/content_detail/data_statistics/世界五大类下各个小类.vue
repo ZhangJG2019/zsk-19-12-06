@@ -49,42 +49,41 @@
       <!-- <p>(数据来源：3G生物)</p> -->
       <div style="margin-top:20px;">
         <el-tabs v-model="activeName2" type="card">
-          <!-- <el-tab-pane :label="this.tabs.geneName" name="first"> -->
-          <div class="table">
-            <el-table border style="width: 100%" :data="this.chinaData">
-              <el-table-column :label="this.tableName" align="center" width="100%">
-                <el-table-column prop="area" label="所属地区" width="120" align="center"></el-table-column>
-                <el-table-column prop="race" label="种族" width="170" align="center"></el-table-column>
+          <el-tab-pane label="1000 Genomes" name="first">
+            <div class="table">
+              <el-table border style="width: 100%" :data="this.newArr_Genomes">
+                <el-table-column prop="race" label="种族" align="center"></el-table-column>
                 <el-table-column prop="testSmounts" label="样本量" align="center"></el-table-column>
-                <el-table-column :label="this.tableLabelAA?this.tableLabelAA:'---'" align="center">
-                  <el-table-column label="n" align="center">
-                    <template slot-scope="scope">{{scope.row.porKeyValueList[1].testSmounts}}</template>
+                <el-table-column label="基因型" align="center" width="100%">
+                  <el-table-column label="AA" align="center">
+                    <el-table-column label="n" align="center">
+                      <template slot-scope="scope">{{scope.row.porKeyValueList[1].testSmounts}}</template>
+                    </el-table-column>
+                    <el-table-column label="%" align="center">
+                      <template slot-scope="scope">{{scope.row.porKeyValueList[1].proportion}}</template>
+                    </el-table-column>
                   </el-table-column>
-                  <el-table-column label="%" align="center">
-                    <template slot-scope="scope">{{scope.row.porKeyValueList[1].proportion}}</template>
+                  <el-table-column label="GG" align="center">
+                    <el-table-column label="n" align="center">
+                      <template slot-scope="scope">{{scope.row.porKeyValueList[0].testSmounts}}</template>
+                    </el-table-column>
+                    <el-table-column label="%" align="center">
+                      <template slot-scope="scope">{{scope.row.porKeyValueList[0].proportion}}</template>
+                    </el-table-column>
+                  </el-table-column>
+                  <el-table-column label="AG" align="center">
+                    <el-table-column label="n" align="center">
+                      <template slot-scope="scope">{{scope.row.porKeyValueList[2].testSmounts}}</template>
+                    </el-table-column>
+                    <el-table-column label="%" align="center">
+                      <template slot-scope="scope">{{scope.row.porKeyValueList[2].proportion}}</template>
+                    </el-table-column>
                   </el-table-column>
                 </el-table-column>
-                <el-table-column :label="this.tableLabelGG?this.tableLabelGG:'---'" align="center">
-                  <el-table-column label="n" align="center">
-                    <template slot-scope="scope">{{scope.row.porKeyValueList[0].testSmounts}}</template>
-                  </el-table-column>
-                  <el-table-column label="%" align="center">
-                    <template slot-scope="scope">{{scope.row.porKeyValueList[0].proportion}}</template>
-                  </el-table-column>
-                </el-table-column>
-                <el-table-column :label="this.tableLabelGA?this.tableLabelGA:'---'" align="center">
-                  <el-table-column label="n" align="center">
-                    <template slot-scope="scope">{{scope.row.porKeyValueList[2].testSmounts}}</template>
-                  </el-table-column>
-                  <el-table-column label="%" align="center">
-                    <template slot-scope="scope">{{scope.row.porKeyValueList[2].proportion}}</template>
-                  </el-table-column>
-                </el-table-column>
-              </el-table-column>
-            </el-table>
-          </div>
-          <!-- </el-tab-pane> -->
-          <!-- <el-tab-pane label="African" name="second">
+              </el-table>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="African" name="second">
             <div class="table">
               <el-table border style="width: 100%" :data="this.newArr_African">
                 <el-table-column prop="area" label="地区" align="center"></el-table-column>
@@ -293,7 +292,7 @@
                 </el-table-column>
               </el-table>
             </div>
-          </el-tab-pane>-->
+          </el-tab-pane>
         </el-tabs>
       </div>
     </div>
@@ -316,7 +315,7 @@ export default {
       ageGroupData: [],
       sampleTypeData: [],
       yearData: [],
-      chinaData: [],
+      chinaData: {},
       activeName1: "first",
       activeName2: "first",
       queryObj: {},
@@ -333,19 +332,12 @@ export default {
       newArr_European: [],
       newArr_European2: [],
       newArr_SouthAsian: [],
-      newArr_SouthAsian2: [],
-      tableName: "",
-      tableLabelGG: "", //表格动态标题
-      tableLabelGA: "", //表格动态标题
-      tableLabelAA: "" //表格动态标题
+      newArr_SouthAsian2: []
     };
   },
   created() {
     this.queryObj =
       Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
-    this.tabs = JSON.parse(getStore("data_statistics_hook")) || [];
-    this.tableName = this.tabs.geneName + "--" + this.tabs.genePorName;
-    // this.tableName = this.tabs.geneName;
     this.getDataInfo();
   },
   methods: {
@@ -353,23 +345,12 @@ export default {
       getForeignDataInfo({
         id: this.queryObj.id
       }).then(res => {
-        debugger;
-        if (res !== [] || res !== null) {
-          if (
-            res[0].porKeyValueList !== [] ||
-            res[0].porKeyValueList !== undefined
-          ) {
-            this.tableLabelGG = res[0].porKeyValueList[0].porName;
-            this.tableLabelGA = res[0].porKeyValueList[1].porName;
-            this.tableLabelAA = res[0].porKeyValueList[2].porName;
-          }
-          this.chinaData = res;
-          // console.log(res);
-          Object.keys(res).forEach(r => {
-            // r是每个数组名称
-            this.filterTableData(res[r], r); //将数据划分为7大类
-          });
-        }
+        this.chinaData = res;
+        console.log(this.chinaData);
+        Object.keys(res).forEach(r => {
+          // r是每个数组名称
+          this.filterTableData(res[r], r); //将数据划分为7大类
+        });
       });
     },
     filterTableData(data, str) {
@@ -398,12 +379,12 @@ export default {
         });
         this.drawSex("Chinese");
       }
-      if (copyArr.fatherRace === null && copyArr.race === "American") {
+      if (copyArr.fatherRace === "American") {
         this.newArr_American.push(data);
-        let pkvl = this.newArr_American[0].porKeyValueList;
+        let pkvl = this.newArr_American;
         this.newArr_American2 = pkvl.map(r => {
           return {
-            name: r.porName,
+            name: r.area,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
@@ -411,12 +392,12 @@ export default {
         });
         this.drawSex("American");
       }
-      if (copyArr.fatherRace === null && copyArr.race === "African") {
+      if (copyArr.fatherRace === "African") {
         this.newArr_African.push(data);
-        let pkvl = this.newArr_African[0].porKeyValueList;
+        let pkvl = this.newArr_African;
         this.newArr_African2 = pkvl.map(r => {
           return {
-            name: r.porName,
+            name: r.area,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
@@ -424,12 +405,12 @@ export default {
         });
         this.drawSex("African");
       }
-      if (copyArr.fatherRace === null && copyArr.race === "East Asian") {
+      if (copyArr.fatherRace === "East Asian") {
         this.newArr_EastAsian.push(data);
-        let pkvl = this.newArr_EastAsian[0].porKeyValueList;
+        let pkvl = this.newArr_EastAsian;
         this.newArr_EastAsian2 = pkvl.map(r => {
           return {
-            name: r.porName,
+            name: r.area,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
@@ -437,12 +418,12 @@ export default {
         });
         this.drawSex("EastAsian");
       }
-      if (copyArr.fatherRace === null && copyArr.race === "European") {
+      if (copyArr.fatherRace === "European") {
         this.newArr_European.push(data);
-        let pkvl = this.newArr_European[0].porKeyValueList;
+        let pkvl = this.newArr_European;
         this.newArr_European2 = pkvl.map(r => {
           return {
-            name: r.porName,
+            name: r.area,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race
@@ -450,12 +431,12 @@ export default {
         });
         this.drawSex("European");
       }
-      if (copyArr.fatherRace === null && copyArr.race === "South Asian") {
+      if (copyArr.fatherRace === "South Asian") {
         this.newArr_SouthAsian.push(data);
-        let pkvl = this.newArr_SouthAsian[0].porKeyValueList;
+        let pkvl = this.newArr_SouthAsian;
         this.newArr_SouthAsian2 = pkvl.map(r => {
           return {
-            name: r.porName,
+            name: r.area,
             value: r.testSmounts ? r.testSmounts : 0,
             fatherRace: r.fatherRace,
             race: r.race

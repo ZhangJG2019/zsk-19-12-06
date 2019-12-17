@@ -152,7 +152,6 @@ export default {
     this.tabsCur = this.queryObj.genePorId;
     this.taskId = this.queryObj.taskId;
     this.tabs = JSON.parse(getStore("clinical_notes")) || [];
-    debugger;
   },
   mounted() {
     this.curDefault = this.tabs.filter(
@@ -160,15 +159,15 @@ export default {
         res.genePorId == this.queryObj.genePorId &&
         res.taskId == this.queryObj.taskId
     )[0];
-    console.log(this.curDefault);
-    debugger;
+    // console.log(this.curDefault);
+
     this.queryData();
   },
   methods: {
     tabsliClick(obj, index) {
       this.tabsCur = obj.genePorId;
       this.taskId = obj.taskId;
-      debugger;
+
       this.curDefault = this.tabs.filter(
         // res => res.genePorId == obj.genePorId
         res => res.genePorId == this.tabsCur && res.taskId == this.taskId
@@ -184,8 +183,7 @@ export default {
       };
       getGeneClinicalDetails(param).then(res => {
         this.dataObj = res;
-        console.log(this.dataObj);
-        debugger;
+        // console.log(this.dataObj);
       });
     },
     toDetailPage(obj) {
@@ -201,7 +199,7 @@ export default {
       window.open(routeData.href, "_blank");
     },
     setPageData() {
-      // debugger;
+      //
       let pageData = [];
       pageData = this.dataObj.literatureSciInfoList;
       setStore("clinical_nodes_detail", pageData);

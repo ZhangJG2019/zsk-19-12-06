@@ -64,7 +64,6 @@ echartFun2.pie2 = function (data) {
   }
 }
 echartFun2.pie = function (el, opt) {
-  debugger
   var myChart = echarts.init(document.getElementById(el));
   var color = [
     '#22cccc', '#3ea3d8', '#a1e5b9', '#feda67', '#e6bef2', '#3dc6e7', '#6de0e2',
@@ -105,7 +104,6 @@ echartFun2.pie = function (el, opt) {
         normal: {
           formatter: "{b} \n( {d}% ) ",
           //   function (params) {
-          //   debugger
           //   var res = params.name;
           //   if (typeof (params.data.race) == 'undefined' || params.data.race == null) {
           //     res += "\n样本量：" + Number(params.value);

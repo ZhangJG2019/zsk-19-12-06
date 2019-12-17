@@ -201,8 +201,7 @@ export default {
             item.year.includes(relatedParhwaysValue) ||
             item.volume.includes(relatedParhwaysValue)
           ) {
-            debugger;
-            console.log(item);
+            // console.log(item);
             this.pathways_Data = [];
             return this.pathways_Data.push(item);
           }
@@ -237,12 +236,12 @@ export default {
             // this.relatedParhways = [res];
             this.relatedParhways = res;
           }
-          // debugger;
+          //
         }
       );
       getLiteratrueByPathways({ pathways: this.queryObj.key }).then(res => {
         this.pathways_Data = res;
-        // debugger;
+        //
       });
     },
     toDetailPage(obj) {
@@ -253,14 +252,14 @@ export default {
           literId: id
         }
       });
-      debugger;
+
       this.setPageData();
       window.open(routeData.href, "_blank");
     },
     setPageData() {
       let pageData = [];
       pageData = this.pathways_Data;
-      // debugger;
+      //
       setStore("path_ways_detail", pageData);
     }
   }

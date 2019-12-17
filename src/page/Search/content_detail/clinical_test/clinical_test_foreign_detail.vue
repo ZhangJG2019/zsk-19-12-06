@@ -117,7 +117,7 @@ export default {
       Object.keys(this.$route.query).length > 0 ? this.$route.query : {};
     this.tabsCur = this.queryObj.literId;
     this.tabs = JSON.parse(getStore("clinical_trials")) || [];
-    debugger;
+
     this.liteName = this.tabs[0].literName;
   },
   mounted() {
@@ -125,13 +125,13 @@ export default {
   },
   methods: {
     tabsliClick(obj, index) {
-      console.log(4444);
-      console.log(obj);
-      // debugger
+      // console.log(4444);
+      // console.log(obj);
+
       if (this.tabsCur == obj.id) return;
       this.tabsCur = obj.literId;
       this.liteName = obj.literName;
-      // debugger
+
       this.$nextTick(function() {
         this.queryData();
       });
@@ -144,7 +144,6 @@ export default {
           : getLiteTrailForeignVODetailInfo;
       queryDetailData({ literId: this.tabsCur }).then(res => {
         this.dataObj = res;
-        debugger;
       });
     },
     topageURL() {

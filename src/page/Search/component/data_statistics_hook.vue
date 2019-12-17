@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      // debugger;
       let param = {
         id: this.queryData.id || "",
         name: this.queryData.key || ""
@@ -54,18 +53,17 @@ export default {
           : getDataStatisticsListVOByDrugId;
       queryData(param)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.loading = false;
           this.data_statistics = res;
-          // debugger;
         })
         .catch(err => {
           this.loading = false;
         });
     },
     toDetailPage(obj) {
-      console.log(obj);
-      // debugger;
+      // console.log(obj);
+
       let routeData = null;
       if (this.activeName == "first") {
         routeData = this.$router.resolve({
@@ -76,7 +74,6 @@ export default {
           }
         });
       }
-      debugger;
       setStore("data_statistics_hook", obj);
       window.open(routeData.href, "_blank");
     }

@@ -11,6 +11,7 @@ import VueResource from 'vue-resource'
 import './assets/icon/font-yewuhuafen/iconfont.css'
 import './assets/icon/font_jiyinguanlian/iconfont.css'
 import './assets/icon/font_top/iconfont.css'
+import './assets/icon/font_zhuce/iconfont.css'
 import $ from 'jquery'
 import axios from 'axios'
 import {
@@ -37,6 +38,7 @@ import {
   CheckboxGroup,
   Card,
   Dialog,
+  Divider,
   DatePicker,
   Dropdown,
   DropdownMenu,
@@ -103,8 +105,6 @@ router.beforeEach(function (to, from, next) {
         path: '/taskall'
       })
     } else {
-      // debugger
-      // alert(111111111)
       // this.$message.error({
       //   message: '请登录后查看',
       //   type: 'error'
@@ -123,6 +123,7 @@ Vue.use(Card)
 Vue.use(Col)
 Vue.use(CheckboxGroup)
 Vue.use(Dialog)
+Vue.use(Divider)
 Vue.use(DatePicker)
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)
